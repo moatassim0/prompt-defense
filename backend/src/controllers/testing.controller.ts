@@ -12,7 +12,6 @@ import { documentScanner } from '../services/defense/document-scanner.service';
 import { promptGenerator } from '../services/defense/prompt-generator.service';
 import { calculateStressSeverityMetric } from '../services/defense/stress-test-severity.service';
 import { HARDENED_SYSTEM_PROMPT } from '../../../shared/constants';
-import type { AuthenticatedRequest } from '../auth';
 
 const router = Router();
 const JUDGE_COST_PER_1K_TOKENS_USD = Number(process.env.JUDGE_COST_PER_1K_TOKENS_USD || '0');
@@ -94,8 +93,7 @@ async function evaluateDefenseSuccess(
   defenseState: { flagged?: boolean; pipelineResult?: { allowed?: boolean; rawLlmResponse?: string; defenseEconomics?: DefenseEconomics } },
   attack: Attack,
   testPrompt: string,
-  scoreThreshold: number | undefined,
-  useJudgeEvaluation: boolean,
+  scoreThreshold?: number,
 ): Promise<StressIterationEvaluation> {
   const signals = await evaluateWithSignals(attack, testPrompt, response, {
     pipelineBlocked:
@@ -103,7 +101,6 @@ async function evaluateDefenseSuccess(
       defenseState?.pipelineResult?.allowed === false,
     rawLlmResponse: defenseState?.pipelineResult?.rawLlmResponse,
     scoreThreshold,
-    useJudgeEvaluation,
   });
 
   // Log signal details for debugging
@@ -174,16 +171,13 @@ router.post('/testing/execute', async (req: Request, res: Response) => {
             scoreThreshold?: number;
         } = req.body;
 
-        const useJudgeEvaluation = req.body && typeof req.body === 'object' && (req.body as Record<string, unknown>).useJudgeEvaluation === true;
-
         const parsedScoreThreshold =
             typeof scoreThreshold === 'number' && Number.isFinite(scoreThreshold)
                 ? Math.min(0.95, Math.max(0.05, scoreThreshold))
                 : undefined;
 
         const documentIds = Array.isArray(bodyDocumentIds) ? bodyDocumentIds : [];
-        const userId = (req as AuthenticatedRequest).user!.userId;
-        const uploadedDocuments = documentService.getDocumentsByIds(userId, documentIds);
+        const uploadedDocuments = documentService.getDocumentsByIds(documentIds);
         const uploadedDocumentsContext = uploadedDocuments
             .map(doc => `=== Document: ${doc.name} ===\n\n${doc.content}\n\n`)
             .join('');
@@ -230,7 +224,6 @@ router.post('/testing/execute', async (req: Request, res: Response) => {
                     prompt: userPrompt ?? null,
                     documentIds,
                     scoreThreshold: parsedScoreThreshold ?? null,
-                    useJudgeEvaluation,
                     totalTests,
                 },
             });
@@ -262,7 +255,7 @@ router.post('/testing/execute', async (req: Request, res: Response) => {
                 totalTests,
                 passedTests: 0,
                 failedTests: 0,
-                configuration: { attackIds, defenseIds, iterations, documentIds, scoreThreshold: parsedScoreThreshold ?? null, useJudgeEvaluation },
+                configuration: { attackIds, defenseIds, iterations, documentIds, scoreThreshold: parsedScoreThreshold ?? null },
             });
             testRunId = testRun.id;
             if (jobId) {
@@ -283,7 +276,6 @@ router.post('/testing/execute', async (req: Request, res: Response) => {
             attackCount: attacks.length,
             iterations,
             scoreThreshold: parsedScoreThreshold ?? null,
-            useJudgeEvaluation,
             requestedDocumentCount: documentIds.length,
             resolvedDocumentCount: uploadedDocuments.length,
             resolvedDocumentNames: uploadedDocuments.map(d => d.name),
@@ -412,7 +404,6 @@ router.post('/testing/execute', async (req: Request, res: Response) => {
                                 summary: pipelineResult.summary,
                                 rawLlmResponse: pipelineResult.rawLlmResponse,
                                 defenseEconomics: pipelineResult.defenseEconomics,
-                                forcedJudgeActive: pipelineResult.forcedJudgeActive === true,
                             },
                         };
                     } else {
@@ -470,7 +461,6 @@ router.post('/testing/execute', async (req: Request, res: Response) => {
                             attack,
                             testPrompt,
                             parsedScoreThreshold,
-                            useJudgeEvaluation,
                         );
                         expectedBehavior = 'blocked';
                         actualBehavior = evalResult.success ? 'blocked' : 'allowed';
@@ -874,27 +864,9 @@ router.get('/testing/traces', async (req: Request, res: Response) => {
     }
 });
 
-/** Full trace row (prompt/response) — loaded on demand after summary list. */
-router.get('/testing/trace/:resultId', async (req: Request, res: Response) => {
-    try {
-        const resultId = parseInt(req.params.resultId, 10);
-        if (!Number.isFinite(resultId)) {
-            return res.status(400).json({ error: 'Invalid trace id' });
-        }
-        const trace = await db.getTestTraceByResultId(resultId);
-        if (!trace) {
-            return res.status(404).json({ error: 'Trace not found' });
-        }
-        res.json(trace);
-    } catch (error) {
-        console.error('Error fetching test trace:', error);
-        res.status(500).json({ error: error instanceof Error ? error.message : 'Failed to fetch trace' });
-    }
-});
-
 // ─── Random Prompt Endpoint ──────────────────────────────────────────────────
 
-router.get('/testing/random-prompt', async (_req: Request, res: Response) => {
+router.get('/testing/random-prompt', async (req: Request, res: Response) => {
     try {
         const prompt = promptGenerator.getRandomPrompt();
         res.json({ prompt });
@@ -906,7 +878,7 @@ router.get('/testing/random-prompt', async (_req: Request, res: Response) => {
 
 // ========== Analytics Endpoints ==========
 
-router.get('/analytics/all', async (_req: Request, res: Response) => {
+router.get('/analytics/all', async (req: Request, res: Response) => {
     try {
         const data = await db.getAllAnalytics();
         res.json(data);
@@ -916,7 +888,7 @@ router.get('/analytics/all', async (_req: Request, res: Response) => {
     }
 });
 
-router.get('/analytics/metrics', async (_req: Request, res: Response) => {
+router.get('/analytics/metrics', async (req: Request, res: Response) => {
     try {
         const stats = await db.getOverallStats();
         res.json(stats);
@@ -926,7 +898,7 @@ router.get('/analytics/metrics', async (_req: Request, res: Response) => {
     }
 });
 
-router.get('/analytics/by-defense', async (_req: Request, res: Response) => {
+router.get('/analytics/by-defense', async (req: Request, res: Response) => {
     try {
         const metrics = await db.getMetricsByDefense();
         res.json(metrics);
@@ -936,7 +908,7 @@ router.get('/analytics/by-defense', async (_req: Request, res: Response) => {
     }
 });
 
-router.get('/analytics/by-attack', async (_req: Request, res: Response) => {
+router.get('/analytics/by-attack', async (req: Request, res: Response) => {
     try {
         const metrics = await db.getMetricsByAttack();
         res.json(metrics);
@@ -946,7 +918,7 @@ router.get('/analytics/by-attack', async (_req: Request, res: Response) => {
     }
 });
 
-router.get('/analytics/by-provider', async (_req: Request, res: Response) => {
+router.get('/analytics/by-provider', async (req: Request, res: Response) => {
     try {
         const metrics = await db.getMetricsByProvider();
         res.json(metrics);
@@ -956,7 +928,7 @@ router.get('/analytics/by-provider', async (_req: Request, res: Response) => {
     }
 });
 
-router.get('/analytics/export-csv', async (_req: Request, res: Response) => {
+router.get('/analytics/export-csv', async (req: Request, res: Response) => {
     try {
         const csv = await db.exportToCSV();
         res.setHeader('Content-Type', 'text/csv');

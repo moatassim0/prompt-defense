@@ -1,0 +1,10 @@
+src/App.tsx(128,9): error TS6133: 'handleCreateAttack' is declared but its value is never read.
+src/App.tsx(149,9): error TS6133: 'handleDeleteAttack' is declared but its value is never read.
+src/components/AnalyticsPage.tsx(2,89): error TS6133: 'Loader2' is declared but its value is never read.
+src/components/DocumentsPage.tsx(14,9): error TS6133: 'user' is declared but its value is never read.
+src/components/LLMComparisonPage.tsx(2,37): error TS6133: 'CheckCircle' is declared but its value is never read.
+src/components/LLMComparisonPage.tsx(2,50): error TS6133: 'XCircle' is declared but its value is never read.
+src/components/LLMComparisonPage.tsx(2,74): error TS6133: 'ShieldCheck' is declared but its value is never read.
+src/components/LLMComparisonPage.tsx(38,11): error TS6133: 'newResults' is declared but its value is never read.
+src/components/TestingPage.tsx(4,31): error TS6133: 'AlertTriangle' is declared but its value is never read.
+src/components/TestingPage.tsx(73,10): error TS6133: 'error' is declared but its value is never read.

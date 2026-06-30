@@ -5,67 +5,27 @@ import {
   QueryRequest,
   QueryResponse,
   UploadResponse,
-  SimulatorRequest,
-  SimulatorResponse,
+  ComparisonRequest,
+  ComparisonResponse,
 } from '../../../shared/types';
-import { shouldSuppressAuth401Toast } from '../lib/auth-toast-suppress';
 
 const API_BASE = '/api';
-
-/** Tag rejected by the response interceptor when a 401 occurs during intentional sign-out. */
-export const suppressedAuth401Marker = { isSuppressedAuth: true as const };
-
-export function isSuppressedAuth401Error(error: unknown): error is typeof suppressedAuth401Marker {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'isSuppressedAuth' in error &&
-    (error as { isSuppressedAuth?: boolean }).isSuppressedAuth === true
-  );
-}
 
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 15000;
 
-// During intentional sign-out, replace 401 with an explicit tagged object so
-// downstream handlers (e.g. bootstrap) do not confuse it with network failure.
-axios.interceptors.response.use(undefined, (error) => {
-  if (
-    axios.isAxiosError(error) &&
-    error.response?.status === 401 &&
-    shouldSuppressAuth401Toast()
-  ) {
-    return Promise.reject(suppressedAuth401Marker);
-  }
-  return Promise.reject(error);
-});
-
-function shouldRetryRequestError(error: unknown): boolean {
-  if (isSuppressedAuth401Error(error)) return false;
-  if (!axios.isAxiosError(error)) return true;
-
-  const status = error.response?.status;
-  // No HTTP response usually means network/timeout issues.
-  if (!status) return true;
-
-  if (status === 401 || status === 403) return false;
-  if (status === 429) return true;
-  return status >= 500;
+function clearStoredSession() {
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(AUTH_USER_KEY);
 }
 
 // ── Helper for retrying requests (useful for Neon auto-suspend) ─────────────
-const fetchWithRetry = async (
-  url: string,
-  opts?: { retries?: number; delayMs?: number; signal?: AbortSignal },
-): Promise<any> => {
-  const retries = opts?.retries ?? 3;
-  const delayMs = opts?.delayMs ?? 2000;
+const fetchWithRetry = async (url: string, retries = 3, delayMs = 2000): Promise<any> => {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      const res = await axios.get(url, { timeout: 15000, signal: opts?.signal });
+      const res = await axios.get(url, { timeout: 15000 });
       return res;
     } catch (err) {
-      if (!shouldRetryRequestError(err)) throw err;
       if (attempt === retries) throw err;
       await new Promise(r => setTimeout(r, delayMs * attempt));
     }
@@ -75,14 +35,14 @@ const fetchWithRetry = async (
 
 export const api = {
   // Health check
-  async checkHealth(options?: { signal?: AbortSignal }) {
-    const response = await axios.get(`${API_BASE}/health`, { signal: options?.signal });
+  async checkHealth() {
+    const response = await axios.get(`${API_BASE}/health`);
     return response.data;
   },
 
   // Documents
-  async getDocuments(options?: { signal?: AbortSignal }) {
-    const response = await axios.get(`${API_BASE}/documents`, { signal: options?.signal });
+  async getDocuments() {
+    const response = await axios.get(`${API_BASE}/documents`);
     return response.data;
   },
 
@@ -107,20 +67,9 @@ export const api = {
     return response.data;
   },
 
-  async loadInfoBankDocument(
-    filename: string,
-    folder: 'clean' | 'poisoned',
-  ): Promise<{ success: boolean; document: any }> {
-    const response = await axios.post(`${API_BASE}/documents/load-infobank`, {
-      filename,
-      folder,
-    });
-    return response.data;
-  },
-
   // Attacks
-  async getAttacks(options?: { signal?: AbortSignal }): Promise<Attack[]> {
-    const response = await axios.get(`${API_BASE}/attacks`, { signal: options?.signal });
+  async getAttacks(): Promise<Attack[]> {
+    const response = await axios.get(`${API_BASE}/attacks`);
     return response.data;
   },
 
@@ -144,8 +93,8 @@ export const api = {
     await axios.delete(`${API_BASE}/attacks/${attackId}`);
   },
 
-  async getDefenses(options?: { signal?: AbortSignal }): Promise<Defense[]> {
-    const response = await axios.get(`${API_BASE}/defenses`, { signal: options?.signal });
+  async getDefenses(): Promise<Defense[]> {
+    const response = await axios.get(`${API_BASE}/defenses`);
     return response.data;
   },
 
@@ -160,12 +109,25 @@ export const api = {
     return response.data;
   },
 
-  // Simulator
-  async runSimulator(request: SimulatorRequest): Promise<SimulatorResponse> {
-    const response = await axios.post(`${API_BASE}/simulator`, request);
+  // Comparison
+  async runComparison(request: ComparisonRequest): Promise<ComparisonResponse> {
+    const response = await axios.post(`${API_BASE}/comparison`, request);
     return response.data;
   },
 
+  async compareProviders(request: { prompt: string; providers: string[] }) {
+    const response = await axios.post(`${API_BASE}/llm-compare`, request);
+    return response.data as {
+      results: Array<{
+        provider: string;
+        response: string;
+        success: boolean;
+        executionTimeMs: number;
+        error?: string;
+        tokenCount?: number;
+      }>;
+    };
+  },
 
   // Traces
   async getTestTraces(params: { limit: number; offset: number; testRunId?: number; success?: boolean; llmProvider?: string; attackType?: string }): Promise<import('../../../shared/types').TestTraceResponse> {
@@ -178,16 +140,6 @@ export const api = {
     if (params.attackType) query.append('attackType', params.attackType);
 
     const response = await axios.get(`${API_BASE}/testing/traces?${query.toString()}`);
-    return response.data;
-  },
-
-  async getTestTraceByResultId(resultId: number): Promise<import('../../../shared/types').TestTrace> {
-    const response = await axios.get(`${API_BASE}/testing/trace/${resultId}`);
-    return response.data;
-  },
-
-  async getTestRuns(limit = 100): Promise<import('../../../shared/types').TestRunListItem[]> {
-    const response = await axios.get(`${API_BASE}/testing/runs?limit=${limit}`);
     return response.data;
   },
 
@@ -219,10 +171,8 @@ export const api = {
   },
 
   // Analytics
-  async getAnalyticsSummary(options?: { signal?: AbortSignal }) {
-    const response = await fetchWithRetry(`${API_BASE}/analytics/all`, {
-      signal: options?.signal,
-    });
+  async getAnalyticsSummary() {
+    const response = await fetchWithRetry(`${API_BASE}/analytics/all`);
     return response.data;
   },
 
@@ -230,4 +180,11 @@ export const api = {
     const response = await axios.get(`${API_BASE}/analytics/export-csv`, { responseType: 'blob' });
     return response.data;
   },
+};
+
+export {
+  ACCESS_TOKEN_KEY,
+  AUTH_USER_KEY,
+  EXIT_LOGOUT_MARKER_KEY,
+  clearStoredSession,
 };

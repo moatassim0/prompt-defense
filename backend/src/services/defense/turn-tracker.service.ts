@@ -99,9 +99,11 @@ export function analyzeResponse(
   }
 
   // Check for approval-without-analysis
+  let approvalSignalFound = false;
   for (const pattern of APPROVAL_WITHOUT_ANALYSIS_PATTERNS) {
     if (pattern.test(response.trim())) {
       session.approvalWithoutAnalysis++;
+      approvalSignalFound = true;
       break;
     }
   }
@@ -113,20 +115,14 @@ export function analyzeResponse(
   if (session.responseLengths.length >= 3) {
     const prevLength = session.responseLengths[session.responseLengths.length - 2];
     const firstLength = session.responseLengths[0];
-    // Response is less than 20% of the first response
+    // Response is less than 40% of the first response
     if (currentLength < firstLength * 0.2 && currentLength < prevLength) {
       lengthDecreaseSignal = true;
     }
   }
 
-  // Determine if escalation threshold is breached.
-  // lengthDecreaseSignal contributes +1 so dramatic response-shortening
-  // (the model flipping from analytical responses to terse approvals) is
-  // counted alongside trust-keyword and approval-without-analysis signals.
-  const totalSignals =
-    session.trustEscalationSignals +
-    session.approvalWithoutAnalysis +
-    (lengthDecreaseSignal ? 1 : 0);
+  // Determine if escalation threshold is breached
+  const totalSignals = session.trustEscalationSignals + session.approvalWithoutAnalysis;
   const escalationDetected = totalSignals >= ESCALATION_THRESHOLD;
 
   if (escalationDetected) {

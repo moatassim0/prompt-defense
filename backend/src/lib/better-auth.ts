@@ -1,20 +1,21 @@
 import { betterAuth } from "better-auth";
-import { pool, query } from "../config/database";
+import { pool } from "../config/database";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
-import { recordLoginEvent } from "./audit";
-import { pruneUserSessionsKeepNewest } from "./session-cleanup";
+import crypto from "crypto";
 
 dotenv.config();
 
 export const auth = betterAuth({
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3001",
+  baseURL: "http://localhost:3001/api/auth",
   trustedOrigins: [
     process.env.FRONTEND_URL ? process.env.FRONTEND_URL : "http://localhost:3000",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001"
   ],
   database: pool,
   emailAndPassword: {
@@ -31,7 +32,7 @@ export const auth = betterAuth({
   user: {
     modelName: "users",
     fields: {
-      name: "display_name",
+      name: "display_name", // Map 'name' to our existing 'display_name'
       email: "email",
       emailVerified: "email_verified",
       image: "image",
@@ -39,14 +40,14 @@ export const auth = betterAuth({
       updatedAt: "updated_at",
     },
     additionalFields: {
-      password_hash: {
-        type: "string",
-        required: false,
-        defaultValue: "managed_by_better_auth",
-      },
       role: {
         type: "string",
         defaultValue: "user",
+      },
+      password: {
+        type: "string",
+        returned: false,
+        fieldName: "password_hash"
       },
       is_active: {
         type: "boolean",
@@ -72,40 +73,10 @@ export const auth = betterAuth({
   account: {
     modelName: "account",
   },
-  databaseHooks: {
-    session: {
-      create: {
-        after: async (session: { userId: string; [key: string]: unknown }) => {
-          try {
-            const result = await query(
-              'SELECT email FROM users WHERE id = $1',
-              [session.userId],
-            );
-            const email = result.rows[0]?.email ?? '';
-            await recordLoginEvent({
-              userId: session.userId,
-              email,
-              success: true,
-            });
-            const maxSessions = Math.max(
-              1,
-              Number.parseInt(process.env.SESSION_MAX_PER_USER ?? '5', 10) || 5,
-            );
-            await pruneUserSessionsKeepNewest(session.userId, maxSessions);
-          } catch (err) {
-            console.error('Session hook (login audit / prune) failed:', err);
-          }
-        },
-      },
-    },
-  },
   advanced: {
-    database: {
-      generateId: () => globalThis.crypto.randomUUID(),
-    },
+    generateId: () => crypto.randomUUID(),
     crossSubDomainCookies: {
-      enabled: process.env.NODE_ENV === 'production' && !!process.env.COOKIE_DOMAIN,
-      domain: process.env.COOKIE_DOMAIN,
-    },
+      enabled: true
+    }
   }
 });

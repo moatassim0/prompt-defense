@@ -129,7 +129,6 @@ CREATE TABLE IF NOT EXISTS documents (
 
 -- ─────────────────────────────────────────────────────────
 -- ATTACKS (persistent attack library)
--- Benign baseline is not stored here; stress tests add it in-memory when requested.
 -- ─────────────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS attacks (

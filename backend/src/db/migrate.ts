@@ -3,7 +3,6 @@ dotenv.config();
 
 import bcrypt from 'bcryptjs';
 import { query, closePool } from '../config/database';
-import { deleteExpiredSessions } from '../lib/session-cleanup';
 import { SEED_ATTACKS } from '../../../shared/attacks';
 import { SEED_DEFENSES } from '../../../shared/defenses';
 
@@ -414,23 +413,6 @@ const migrations: Array<{ name: string; sql: string }> = [
         );
     `,
   },
-
-  // ── 015: Drop legacy auth tables (replaced by Better Auth session/account) ──
-  {
-    name: '015_drop_legacy_auth_tables',
-    sql: `
-      DROP TABLE IF EXISTS auth_sessions;
-      DROP TABLE IF EXISTS refresh_tokens;
-    `,
-  },
-
-  // ── 016: Benign baseline is a stress-test option, not a library row ─────────
-  {
-    name: '016_remove_benign_baseline_from_attacks',
-    sql: `
-      DELETE FROM attacks WHERE id = 'benign-baseline';
-    `,
-  },
 ];
 
 export async function runMigrations(): Promise<void> {
@@ -572,73 +554,16 @@ export async function seedDefaultAccounts(): Promise<void> {
       continue;
     }
     const hash = await bcrypt.hash(account.password, 12);
-    const { rows } = await query(
+    await query(
       `INSERT INTO users (email, password_hash, role)
        VALUES ($1, $2, $3)
-       ON CONFLICT (email) DO NOTHING
-       RETURNING id`,
+       ON CONFLICT (email) DO NOTHING`,
       [account.email, hash, account.role],
     );
-    const user = rows[0];
-    if (user) {
-      await query(
-        `INSERT INTO account (id, "accountId", "providerId", "userId", password, "createdAt", "updatedAt")
-         VALUES (gen_random_uuid()::text, $1, 'credential', $2, $3, NOW(), NOW())
-         ON CONFLICT DO NOTHING`,
-        [user.id, user.id, hash],
-      );
-    }
     console.log(`  ✓ ${account.email} (${account.role})`);
   }
   await markSeedApplied(seedName);
   console.log('✓ Seed accounts ready');
-}
-
-/**
- * Ensures every active user with a real bcrypt `password_hash` has a Better Auth
- * `credential` row. Without it, sign-in returns INVALID_EMAIL_OR_PASSWORD even when
- * the email exists (common if users were created before migration 014 or seed skipped
- * after a partial insert).
- */
-export async function backfillCredentialAccounts(): Promise<void> {
-  const result = await query(
-    `INSERT INTO account (id, "accountId", "providerId", "userId", password, "createdAt", "updatedAt")
-     SELECT gen_random_uuid()::text,
-            u.id::text,
-            'credential',
-            u.id,
-            u.password_hash,
-            NOW(),
-            NOW()
-     FROM users u
-     WHERE u.deleted_at IS NULL
-       AND u.password_hash IS NOT NULL
-       AND u.password_hash <> 'managed_by_better_auth'
-       AND length(trim(u.password_hash)) >= 50
-       AND NOT EXISTS (
-         SELECT 1 FROM account a
-         WHERE a."userId" = u.id AND a."providerId" = 'credential'
-       )`,
-  );
-  const n = result.rowCount ?? 0;
-  if (n > 0) {
-    console.log(`✓ Backfilled ${n} missing credential account row(s) (Better Auth sign-in)`);
-  }
-}
-
-export async function cleanupExpiredDeletedAccounts(): Promise<void> {
-  const result = await query(
-    `DELETE FROM users
-     WHERE is_active = FALSE
-       AND deleted_at IS NOT NULL
-       AND deleted_at < NOW() - INTERVAL '72 hours'`,
-  );
-  const purged = result.rowCount ?? 0;
-  if (purged > 0) {
-    console.log(`✓ Purged ${purged} expired soft-deleted account(s)`);
-  } else {
-    console.log('✓ No expired deleted accounts to purge');
-  }
 }
 
 // Allow direct execution: npx tsx src/db/migrate.ts
@@ -649,21 +574,8 @@ const isMain =
 if (isMain) {
   runMigrations()
     .then(() => seedDefaultAccounts())
-    .then(() => backfillCredentialAccounts())
     .then(() => seedAttacks())
     .then(() => seedDefenses())
-    .then(() => cleanupExpiredDeletedAccounts())
-    .then(() => deleteExpiredSessions())
-    .then(async () => {
-      // InfoBank fixture manifest — logged on startup for operator reference.
-      // Documents are not auto-seeded into the DB; upload them manually via the Documents page.
-      // Manifest lives at shared/infobank-manifest.ts.
-      const { INFOBANK_MANIFEST } = await import('../../../shared/infobank-manifest.js');
-      const cleanCount = INFOBANK_MANIFEST.filter(d => d.folder === 'clean').length;
-      const poisonedCount = INFOBANK_MANIFEST.filter(d => d.folder === 'poisoned').length;
-      console.log(`📁 InfoBank: ${cleanCount} clean fixtures, ${poisonedCount} poisoned fixtures registered in manifest.`);
-      console.log(`   Upload from InfoBank/ folder via the Documents page to begin testing.`);
-    })
     .then(() => closePool())
     .then(() => process.exit(0))
     .catch((err) => {

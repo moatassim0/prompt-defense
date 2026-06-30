@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { CheckCircle2, XCircle, AlertTriangle, Info, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -38,15 +38,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     [remove],
   );
 
-  const toast = useMemo(
-    () => ({
-      success: (msg: string, dur?: number) => add('success', msg, dur),
-      error: (msg: string, dur?: number) => add('error', msg, dur),
-      warning: (msg: string, dur?: number) => add('warning', msg, dur),
-      info: (msg: string, dur?: number) => add('info', msg, dur),
-    }),
-    [add],
-  );
+  const toast = {
+    success: (msg: string, dur?: number) => add('success', msg, dur),
+    error: (msg: string, dur?: number) => add('error', msg, dur),
+    warning: (msg: string, dur?: number) => add('warning', msg, dur),
+    info: (msg: string, dur?: number) => add('info', msg, dur),
+  };
 
   return (
     <ToastContext.Provider value={{ toast }}>
@@ -74,9 +71,9 @@ const ICONS: Record<ToastType, ReactNode> = {
 };
 
 const TYPE_STYLES: Record<ToastType, string> = {
-  success: 'border-l-safe text-safe',
-  error: 'border-l-threat text-threat',
-  warning: 'border-l-warn text-warn',
+  success: 'border-l-green-500 text-green-400',
+  error: 'border-l-red-500 text-red-400',
+  warning: 'border-l-amber-500 text-amber-400',
   info: 'border-l-blue-500 text-blue-400',
 };
 

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { DEFAULT_LLM_MODEL } from '../../../shared/constants';
 
 export interface LLMConfig {
   apiKey: string;
@@ -113,7 +112,7 @@ export class LLMService {
 export function createLLMService(): LLMService {
   const config: LLMConfig = {
     apiKey: process.env.CEREBRAS_API_KEY || '',
-    model: process.env.LLM_MODEL || DEFAULT_LLM_MODEL,
+    model: process.env.LLM_MODEL || 'llama3.1-8b',
     baseUrl: process.env.CEREBRAS_BASE_URL || 'https://api.cerebras.ai/v1',
     maxTokens: parseInt(process.env.MAX_TOKENS || '8000'),
   };

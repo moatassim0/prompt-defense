@@ -45,15 +45,8 @@ export interface Document {
   name: string;
   content: string;
   uploadedAt: Date;
-  /** Known adversarial fixture (e.g. InfoBank poisoned folder). */
   isPoisoned: boolean;
   attackType?: string;
-  /**
-   * True for end-user file uploads (.txt from disk). Unknown provenance —
-   * treated as untrusted for simulator clean baselines and flagged in the UI.
-   * InfoBank loads are never marked untrusted (clean or poisoned use isPoisoned instead).
-   */
-  untrustedUpload?: boolean;
 }
 
 export interface Attack {
@@ -61,14 +54,13 @@ export interface Attack {
   name: string;
   description: string;
   injectionText: string;
-  category: 'override' | 'leak' | 'refuse' | 'jailbreak' | 'obfuscation' | 'indirect' | 'escalation' | 'baseline' | 'Fabricated Context';
+  category: 'override' | 'leak' | 'refuse' | 'jailbreak' | 'obfuscation' | 'indirect' | 'escalation' | 'baseline';
   tier: 'none' | 'basic' | 'intermediate' | 'advanced';
   howItWorks?: string;
   mechanism?: string;
   impact?: string;
   example?: string;
   isBuiltIn?: boolean;
-  createdAt?: string | Date;
 }
 
 export interface Defense {
@@ -90,8 +82,6 @@ export interface ChatMessage {
   content: string;
   timestamp: Date;
   defenseState?: DefenseState;
-  /** Present when document context was truncated server-side for this reply. */
-  wasTruncated?: boolean;
 }
 
 export interface DefenseState {
@@ -103,8 +93,6 @@ export interface DefenseState {
     verdicts: { defenseId: string; defenseName: string; triggered: boolean; confidence: number; details: string; blocked: boolean }[];
     defenseEconomics?: DefenseEconomics;
     summary: string;
-    /** True when Turn Tracker had latched `forceLlmJudge` at judge decision time for this response. */
-    forcedJudgeActive?: boolean;
   };
   flagged?: boolean;
 }
@@ -131,17 +119,10 @@ export interface QueryRequest {
   activeDefenses: string[];
 }
 
-/** Stress test runner (`POST /api/testing/execute`) — optional fields beyond `attackIds`. */
-export interface StressTestConfig {
-  useJudgeEvaluation?: boolean; // default false — when false, skips runLLMJudge in evaluateWithSignals to preserve API quota
-}
-
 export interface QueryResponse {
   response: string;
   defenseState: DefenseState;
   truncated: boolean;
-  /** True when document context was partially omitted due to context limits (chat / simulator). */
-  wasTruncated?: boolean;
   tokenCount?: number;
 }
 
@@ -182,11 +163,9 @@ export interface StressEvaluationSummary {
 
 export interface UploadResponse {
   document: Document;
-  /** Optional upload-time scan (encoding / semantic heuristics). */
-  scanResult?: { isPoisonSuspect: boolean; indicators: string[] };
 }
 
-export interface SimulationDiffData {
+export interface ComparisonData {
   beforeResponse: ChatMessage;
   afterResponse: ChatMessage;
   diff: DiffSegment[];
@@ -197,35 +176,21 @@ export interface DiffSegment {
   text: string;
 }
 
-export interface SimulatorRequest {
+export interface ComparisonRequest {
   prompt: string;
   documentIds: string[];
   attackIds?: string[];
   defenseIds?: string[];
 }
 
-/** One column in the simulator (clean / breach / protected). */
-export type SimulatorColumnResult = QueryResponse;
-
-export interface SimulatorMeta {
-  wasTruncated: boolean;
-  truncatedDocs: string[];
-  documentTokensUsed: number;
-  documentTokensBudget: number;
-}
-
-export interface SimulatorResponse {
-  clean: SimulatorColumnResult;
-  breach: SimulatorColumnResult;
-  /** Defended pipeline column (wire key is `protected`). */
-  'protected': SimulatorColumnResult;
-  meta?: SimulatorMeta;
+export interface ComparisonResponse {
+  clean: QueryResponse;
+  attacked?: QueryResponse;
+  defended?: QueryResponse;
 }
 
 export interface TestTrace {
   id: string;
-  /** `test_results.id` — use to load full prompt/response after list fetch. */
-  resultId?: number;
   testCaseId: string;
   attackId?: string;
   testRunId: number;
@@ -253,18 +218,4 @@ export interface TestTrace {
 export interface TestTraceResponse {
   data: TestTrace[];
   total: number;
-}
-
-/** Row from `GET /api/testing/runs` (dates are ISO strings over the wire). */
-export interface TestRunListItem {
-  id: number;
-  name: string;
-  description: string;
-  startedAt: string;
-  completedAt?: string;
-  status: 'running' | 'completed' | 'failed' | 'cancelled';
-  totalTests: number;
-  passedTests: number;
-  failedTests: number;
-  configuration: Record<string, unknown>;
 }

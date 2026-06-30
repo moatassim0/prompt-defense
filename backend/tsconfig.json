@@ -24,7 +24,6 @@
     "dist",
     "../testing/run-tests.ts",
     "src/test-db.ts",
-    "src/test-neon.ts",
-    "src/gen-schema.ts"
+    "src/test-neon.ts"
   ]
 }

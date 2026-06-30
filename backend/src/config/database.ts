@@ -3,9 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const DB_DEBUG_QUERIES =
-  process.env.DB_DEBUG_QUERIES === '1' || process.env.DB_DEBUG_QUERIES === 'true';
-
 // Create connection pool for Neon
 const rejectUnauthorized =
   process.env.DB_SSL_INSECURE === 'true'
@@ -29,7 +26,7 @@ export const pool = new Pool({
 
 // Connection event handlers
 pool.on('connect', () => {
-  if (DB_DEBUG_QUERIES) console.log('✓ Connected to Neon PostgreSQL');
+  console.log('✓ Connected to Neon PostgreSQL');
 });
 
 pool.on('error', (err: any) => {
@@ -52,9 +49,7 @@ export async function query(text: string, params?: any[], retries = 3) {
     try {
       const res = await pool.query(text, params);
       const duration = Date.now() - start;
-      if (DB_DEBUG_QUERIES) {
-        console.log('Executed query', { text: text.substring(0, 50), duration, rows: res.rowCount });
-      }
+      console.log('Executed query', { text: text.substring(0, 50), duration, rows: res.rowCount });
       return res;
     } catch (error: any) {
       const isTransient =
@@ -119,7 +114,7 @@ function startKeepAlive() {
   keepAliveTimer = setInterval(async () => {
     try {
       await pool.query('SELECT 1');
-      if (DB_DEBUG_QUERIES) console.log('💓 DB keep-alive ping OK');
+      console.log('💓 DB keep-alive ping OK');
     } catch (err: any) {
       console.warn('⚠ DB keep-alive ping failed — attempting immediate reconnect:', err.message);
       // Actively try to re-warm the connection instead of waiting 4 more minutes

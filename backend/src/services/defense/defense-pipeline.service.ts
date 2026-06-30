@@ -169,7 +169,6 @@ export async function runOutputStage(opts: OutputStageOptions): Promise<{
   verdicts: DefenseVerdict[];
   blocked: boolean;
   defenseEconomics: DefenseEconomics;
-  forcedJudgeActive: boolean;
 }> {
   const verdicts: DefenseVerdict[] = [];
   let blocked = false;
@@ -194,10 +193,10 @@ export async function runOutputStage(opts: OutputStageOptions): Promise<{
     if (dlpVerdict.blocked) blocked = true;
   }
 
-  // 3. LLM-as-Judge — snapshot force latch *before* turn-tracker updates this turn (see turn-tracker.service)
-  const forcedJudgeActive = shouldForceLlmJudge(opts.sessionId);
+  // 3. LLM-as-Judge
   const shouldRunJudge =
-    opts.activeDefenses.includes('llm-judge') || forcedJudgeActive;
+    opts.activeDefenses.includes('llm-judge') ||
+    shouldForceLlmJudge(opts.sessionId);
 
   if (shouldRunJudge) {
     const judgeStartedAt = Date.now();
@@ -222,20 +221,16 @@ export async function runOutputStage(opts: OutputStageOptions): Promise<{
       verdicts.push(judgeVerdict);
       if (judgeVerdict.blocked) blocked = true;
     } catch (err) {
-      // FAIL-OPEN: Judge API timeouts or errors must not block responses.
-      // Per sync.md §1 (Fail-Open Policy), this prevents unintended DoS
-      // during stress testing when the judge LLM is unavailable or slow.
       defenseEconomics.addedLatencyMs += Date.now() - judgeStartedAt;
-      console.warn('[LLM Judge] Call failed, failing open:', err instanceof Error ? err.message : err);
       verdicts.push({
         defenseId: 'llm-judge',
         defenseName: 'LLM-as-Judge (Response Audit)',
-        triggered: false,
-        confidence: 0,
-        details: `Judge call failed: ${err instanceof Error ? err.message : 'unknown error'}. Failing open to prevent DoS.`,
-        blocked: false,
+        triggered: true,
+        confidence: 70,
+        details: `Judge call failed: ${err instanceof Error ? err.message : 'unknown error'}. Defaulting to UNSAFE (fail-closed).`,
+        blocked: true,
       });
-      // blocked remains unchanged — do NOT set blocked = true
+      blocked = true;
     }
   }
 
@@ -250,7 +245,7 @@ export async function runOutputStage(opts: OutputStageOptions): Promise<{
     defenseEconomics.estimatedJudgeCostUsd = Number((defenseEconomics.estimatedJudgeCostUsd || 0).toFixed(6));
   }
 
-  return { verdicts, blocked, defenseEconomics, forcedJudgeActive };
+  return { verdicts, blocked, defenseEconomics };
 }
 
 // ─── Full pipeline ───────────────────────────────────────────────────────────
@@ -308,7 +303,6 @@ export async function runDefensePipeline(opts: PipelineOptions): Promise<Defense
         tokenOverhead: 0,
         estimatedJudgeCostUsd: 0,
       },
-      forcedJudgeActive: false,
       summary: generateDefenseFallback(allVerdicts),
     };
   }
@@ -342,7 +336,6 @@ export async function runDefensePipeline(opts: PipelineOptions): Promise<Defense
       modifiedResponse: generateDefenseFallback(allVerdicts),
       rawLlmResponse: llmResponse,
       defenseEconomics: outputResult.defenseEconomics,
-      forcedJudgeActive: outputResult.forcedJudgeActive,
       summary: generateDefenseFallback(allVerdicts),
     };
   }
@@ -357,7 +350,6 @@ export async function runDefensePipeline(opts: PipelineOptions): Promise<Defense
     modifiedResponse: llmResponse || '',
     rawLlmResponse: llmResponse,
     defenseEconomics: outputResult.defenseEconomics,
-    forcedJudgeActive: outputResult.forcedJudgeActive,
     summary: 'All defenses passed — response is clean.',
   };
 }

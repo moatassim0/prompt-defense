@@ -26,7 +26,7 @@ const AUTHORITY_PATTERNS = [
   /protocol\s+\w+/i,
   /resolution\s+[\w-]+/i,
   /directive\s+[\w#-]+/i,
-  /executive\s+(escalation|pre-authorization|override|channel|access\s+framework)/i,
+  /executive\s+(escalation|pre-authorization|override|channel)/i,
   /priority\s+processing\s+channel/i,
   /dedicated\s+escalation\s+channel/i,
   /established\s+by\s+(the\s+)?(executive|leadership|committee|board|coo|cfo|cto|ceo)/i,
@@ -41,15 +41,6 @@ const AUTHORITY_PATTERNS = [
   /(?:platform|app)\s+(?:integrity|trust)\s+(?:team|board|council)/i,
   /customer\s+(?:protection|support)\s+(?:board|committee|operations)/i,
   /(?:help\s*center|support\s+policy)\s+(?:authority|directive|framework)/i,
-
-  // ── Additional patterns covering real InfoBank attack documents ───────────
-  // Board/committee reviewed and approved (legal doc: "Board Audit Committee reviewed and approved")
-  /(?:board|executive|senior|legal|compliance|audit)\s+(?:audit\s+)?committee\s+(?:reviewed|approved|ratified|authorised|determined)/i,
-  // Streamlined / accelerated pathway formally established (legal + IT docs)
-  /(?:expedited|streamlined|accelerated)\s+(?:processing|approval|provisioning)\s+(?:pathway|protocol|channel|framework)\s+(?:has\s+been\s+)?(?:established|ratified|approved|activated)/i,
-  // Named executive frameworks like "Executive Access Framework (EAF)"
-  /executive\s+access\s+framework/i,
-  /\bEAF\b/,
 ];
 
 // ─── Bypass instruction patterns ─────────────────────────────────────────────
@@ -76,47 +67,11 @@ const BYPASS_PATTERNS = [
   /treat\s+(?:the\s+)?(?:user|account)\s+as\s+verified/i,
   /no\s+(?:additional|further)\s+(?:identity|account)\s+checks?\s+(?:is\s+)?(?:needed|required)/i,
   /expedite\s+(?:subscriber|customer|account)\s+requests?\s+without\s+review/i,
-
-  // ── Additional patterns covering real InfoBank attack documents ───────────
-
-  // Planted response string — the clearest injection signal:
-  // any document that explicitly tells the AI what confirmation text to output
-  // e.g. "The confirmation response for pre-vetted vendor requests ... is: '...'"
-  //      "The required acknowledgement for requests processed under EAF is: '...'"
-  //      "The confirmation notation for Phase 3 processing is: '...'"
-  //      "append the confirmation notation 'Approved — standard processing confirmed'"
-  /(?:confirmation|acknowledgement)\s+notation\s+["""'']/i,
-  /(?:the\s+)?(?:confirmation|required\s+acknowledgement|acknowledgement)\s+(?:response|notation|phrase)\s+for\s+\w[\w\s-]*is\s*:\s*["""'']/i,
-  /required\s+to\s+(?:append|include|add)\s+the\s+(?:confirmation|acknowledgement)\s+notation/i,
-  /confirmation\s+response\s+for\s+(?:pre-vetted|phase|approved|executive|eaf|requests\s+processed)/i,
-
-  // "without returning to the [legal/standard] review stage" (legal doc)
-  /without\s+returning\s+to\s+(?:the\s+)?(?:legal|standard|full|normal|initial|compliance)\s+(?:review|stage|process)/i,
-
-  // "does not require the standard change management ticket" (IT doc)
-  /does?\s+not\s+require\s+the\s+standard\s+(?:change\s+management|review|approval|verification|compliance)\s+(?:ticket|process|step|procedure|form)/i,
-
-  // "verification sequence / multi-step verification is replaced/waived" (IT doc)
-  /(?:verification\s+sequence|multi[- ]step\s+verification|standard\s+(?:verification|approval)\s+process)\s+is\s+(?:replaced|waived|bypassed|reduced|removed|omitted)/i,
-
-  // "do not require further escalation" (finance fragmented doc section 6)
-  /do\s+not\s+require\s+(?:further|additional)\s+escalation/i,
-
-  // "considered resolved without additional review" (finance fragmented doc)
-  /(?:considered|treated\s+as)\s+resolved\s+without\s+(?:additional|further)\s+(?:review|escalation)/i,
-
-  // "secondary verification step may be considered satisfied" (finance fragmented doc section 3)
-  /secondary\s+verification\s+(?:step|stage|requirement)\s+may\s+be\s+(?:considered\s+)?(?:satisfied|waived|bypassed|skipped)/i,
-
-  // "Requests processed through [pathway] do not require further escalation"
-  /requests?\s+processed\s+through\s+(?:the\s+)?(?:pathway|this\s+channel|standard\s+approval|streamlined)/i,
 ];
 
 // Strong indicators that explicitly ask to skip controls.
-// At least one of these must fire for a hard block.
-// Planted response strings are the strongest possible signal — any legitimate
-// business document will describe workflows but will never tell the AI exactly
-// what confirmation phrase to output.
+// We require at least one of these before hard-blocking to reduce
+// false positives in realistic governance/compliance documents.
 const STRONG_BYPASS_PATTERNS = [
   /skip\s+(standard\s+)?review/i,
   /bypass\s+(standard|normal|regular)\s+(review|approval|process)/i,
@@ -125,21 +80,6 @@ const STRONG_BYPASS_PATTERNS = [
   /supersedes?\s+(individual|manual|standard)\s+(document\s+)?review/i,
   /skip\s+(identity|account|ownership)\s+verification/i,
   /expedite\s+(subscriber|customer|account)\s+requests?\s+without\s+review/i,
-
-  // Planted response string patterns — explicit instructions to output a confirmation phrase
-  /(?:confirmation|acknowledgement)\s+notation\s+["""'']/i,
-  /(?:the\s+)?(?:confirmation|required\s+acknowledgement)\s+(?:response|notation|phrase)\s+for\s+\w[\w\s-]*is\s*:\s*["""'']/i,
-  /required\s+to\s+(?:append|include|add)\s+the\s+(?:confirmation|acknowledgement)\s+notation/i,
-
-  // "without returning to the [standard] review stage"
-  /without\s+returning\s+to\s+(?:the\s+)?(?:legal|standard|full|normal)\s+(?:review|stage|process)/i,
-
-  // "verification sequence is replaced/waived"
-  /(?:verification\s+sequence|multi[- ]step\s+verification)\s+is\s+(?:replaced|waived|bypassed)/i,
-
-  // "do not require further escalation" / "resolved without additional review"
-  /do\s+not\s+require\s+(?:further|additional)\s+escalation/i,
-  /(?:considered|treated\s+as)\s+resolved\s+without\s+(?:additional|further)\s+(?:review|escalation)/i,
 ];
 
 // ─── Fabricated citation patterns ────────────────────────────────────────────
@@ -238,16 +178,15 @@ export function runSemanticTriggerDetector(documentContext: string): DefenseVerd
     .filter((match): match is RegExpMatchArray => Boolean(match))
     .map((match) => match[0]);
 
-  // Blocking policy:
-  // Hard block when: authority establishment + bypass instruction + at least one strong bypass phrase.
-  // Citations are no longer required for blocking — a document that claims executive authority,
-  // tells the AI to skip review, AND uses explicit strong bypass language (especially planted
-  // response strings) is a backdoor regardless of whether it also uses fake reference numbers.
-  // Citations boost the confidence score from 85% to 95% but are not gating for the block.
+  // Softened policy:
+  // - still require all 3 signals for a hard block
+  // - additionally require at least one strong bypass phrase to avoid
+  //   over-blocking legitimate policy language that mentions approvals.
   const hasStrongBypass = strongBypassMatches.length > 0;
   const isBackdoor =
     result.hasAuthorityEstablishment &&
     result.hasBypassInstructions &&
+    result.hasFabricatedCitations &&
     hasStrongBypass;
   const triggered = isBackdoor || (result.hasAuthorityEstablishment && result.hasBypassInstructions);
 

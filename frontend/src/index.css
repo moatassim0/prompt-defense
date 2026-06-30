@@ -1,29 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    color-scheme: dark;
-    /* Light Theme - Adjusted for Thrax aesthetic */
-    --background: 210 20% 98%;              
-    --foreground: 276 11% 9%;              
+    /* Light Theme - Professional Gray-Blue */
+    --background: 210 20% 98%;              /* Soft off-white, not harsh white */
+    --foreground: 215 25% 15%;              /* Deep blue-gray for text */
     
-    --card: 0 0% 100%;                      
-    --card-foreground: 276 11% 9%;
+    --card: 0 0% 100%;                      /* Pure white cards for contrast */
+    --card-foreground: 215 25% 15%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 276 11% 9%;
+    --popover-foreground: 215 25% 15%;
     
-    /* Primary: Vibrant Orange */
-    --primary: 24 94% 53%;                 /* Vibrant orange */
+    /* Primary: Electric Blue (security/tech vibe) */
+    --primary: 217 91% 60%;                 /* Vibrant electric blue */
     --primary-foreground: 0 0% 100%;
     
     /* Secondary: Cool Gray */
-    --secondary: 214 20% 92%;               
-    --secondary-foreground: 276 16% 17%;
+    --secondary: 214 20% 92%;               /* Light cool gray */
+    --secondary-foreground: 215 25% 25%;
     
     /* Muted: Subtle backgrounds */
     --muted: 214 20% 95%;
@@ -31,16 +28,16 @@
     
     /* Accent: Slightly darker than secondary */
     --accent: 214 25% 88%;
-    --accent-foreground: 276 16% 20%;
+    --accent-foreground: 215 25% 20%;
     
     /* Destructive: Security Red */
-    --destructive: 0 72% 51%;               
+    --destructive: 0 72% 51%;               /* Bright red for dangers/attacks */
     --destructive-foreground: 0 0% 100%;
     
     /* Borders & Inputs */
-    --border: 214 20% 88%;                  
+    --border: 214 20% 88%;                  /* Subtle borders */
     --input: 214 20% 88%;
-    --ring: 24 94% 53%;                    /* Orange focus ring */
+    --ring: 217 91% 60%;                    /* Electric blue focus ring */
     
     --radius: 0.5rem;
     
@@ -53,93 +50,83 @@
     
     --info: 199 89% 48%;                    /* Cyan for info */
     --info-foreground: 0 0% 100%;
-
-    /* Sidebar — theme-independent, always dark (not overridden in .dark) */
-    --sidebar-background: 256 14% 14%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-border: 256 14% 22%;
-    --sidebar-primary: 22 100% 50%;
+    
+    /* Sidebar - Slightly darker for visual hierarchy */
+    --sidebar-background: 210 20% 96%;
+    --sidebar-foreground: 215 25% 20%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-muted: 0 0% 60%;
-    --sidebar-active-bg: 22 40% 14%;
-    /* shadcn `sidebar` color scale — keep in sync with dark sidebar (not in .dark) */
-    --sidebar-accent: 256 14% 20%;
-    --sidebar-accent-foreground: 0 0% 85%;
-    --sidebar-ring: 22 100% 50%;
+    --sidebar-accent: 214 20% 92%;
+    --sidebar-accent-foreground: 215 25% 20%;
+    --sidebar-border: 214 20% 90%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    /* Dark Theme - Deep Purplish-Brown (Thrax aesthetic) */
-    --background: 276 11% 9%;              /* Deep purplish brown */
-    --foreground: 0 0% 95%;              /* Almost white text */
+    /* Dark Theme - Deep Blue-Black (cybersecurity aesthetic) */
+    --background: 222 47% 11%;              /* Deep navy-black */
+    --foreground: 210 40% 96%;              /* Almost white text */
     
-    --card: 276 11% 11%;                    /* Slightly lighter cards */
-    --card-foreground: 0 0% 95%;
+    --card: 222 47% 14%;                    /* Slightly lighter cards */
+    --card-foreground: 210 40% 96%;
     
-    --popover: 276 11% 11%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 96%;
     
-    /* Primary: Vibrant Orange */
-    --primary: 24 94% 53%;                 /* Orange (#f97316) */
+    /* Primary: Electric Blue (glows in dark) */
+    --primary: 217 91% 60%;                 /* Same vibrant blue */
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary: Darker purplish-gray */
-    --secondary: 276 16% 17%;
-    --secondary-foreground: 0 0% 95%;
+    /* Secondary: Dark blue-gray */
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 210 40% 96%;
     
     /* Muted: Darker backgrounds */
-    --muted: 276 16% 17%;
-    --muted-foreground: 276 10% 65%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 65%;
     
     /* Accent: Slightly lighter than background */
-    --accent: 276 16% 20%;
-    --accent-foreground: 0 0% 95%;
+    --accent: 215 25% 22%;
+    --accent-foreground: 210 40% 96%;
     
     /* Destructive: Darker red for dark theme */
     --destructive: 0 62% 50%;
     --destructive-foreground: 210 40% 98%;
     
     /* Borders & Inputs */
-    --border: 276 16% 17%;                  /* Subtle dark borders */
-    --input: 276 16% 17%;
-    --ring: 24 94% 53%;                    /* Orange focus */
+    --border: 215 25% 24%;                  /* Subtle dark borders */
+    --input: 215 25% 24%;
+    --ring: 217 91% 60%;                    /* Electric blue focus */
     
     /* Semantic Colors - Adjusted for dark backgrounds */
     --success: 142 71% 45%;                 /* Keep green vibrant */
     --success-foreground: 0 0% 100%;
     
     --warning: 38 92% 50%;                  /* Keep amber bright */
-    --warning-foreground: 276 11% 9%;      /* Dark text on amber */
+    --warning-foreground: 222 47% 11%;      /* Dark text on amber */
     
     --info: 199 89% 48%;
     --info-foreground: 0 0% 100%;
+    
+    /* Sidebar - Darker for depth */
+    --sidebar-background: 222 47% 9%;       /* Slightly darker than main bg */
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 16%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 215 25% 18%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
 @layer base {
-  html,
-  body,
-  #root {
-    height: 100%;
-    overflow: hidden;
-  }
-
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-  }
-
-  code, pre, [data-llm], [data-prompt], .font-mono {
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  :focus-visible {
-    outline: 2px solid hsl(var(--primary));
-    outline-offset: 2px;
-    border-radius: 4px;
   }
 }
 
@@ -234,15 +221,6 @@
     background: hsl(var(--muted-foreground) / 0.8);
   }
 }
-
-/* Custom scrollbars */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.5); }
-
-/* Firefox */
-* { scrollbar-width: thin; scrollbar-color: hsl(var(--border)) transparent; }
 
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -1,4 +1,4 @@
-import { query } from '../config/database';
+import { pool, query } from '../config/database';
 import { TestRun, TestResult } from '../../../testing/framework/test-case';
 import { Metrics } from '../../../testing/framework/metrics-collector';
 
@@ -280,28 +280,13 @@ export class DatabaseService {
   }
 
   /**
-   * Get paginated test traces (summary rows — omits large prompt/response blobs for fast list loads).
+   * Get paginated test traces
    */
   async getTestTraces(limit: number = 50, offset: number = 0, filters: { testRunId?: number, success?: boolean, llmProvider?: string, attackType?: string } = {}): Promise<any[]> {
-    let queryText = `SELECT
-        tres.id,
-        tres.test_run_id,
-        tres.test_case_id,
-        tres.attack_id,
-        tres.llm_provider,
-        tres.expected_behavior,
-        tres.actual_behavior,
-        tres.success,
-        tres.execution_time_ms,
-        tres.token_count,
-        tres.defense_ids,
-        tres.defense_state,
-        tres.created_at,
-        tr.name as run_name,
-        tr.started_at as run_started_at
-      FROM test_results tres
+    let queryText = `SELECT tres.*, tr.name as run_name, tr.started_at as run_started_at 
+      FROM test_results tres 
       LEFT JOIN test_runs tr ON tres.test_run_id = tr.id`;
-
+    
     const params: any[] = [];
     const conditions: string[] = [];
 
@@ -314,49 +299,27 @@ export class DatabaseService {
       conditions.push(`tres.success = $${params.length}`);
     }
     if (filters.llmProvider) {
-      params.push(`%${filters.llmProvider}%`);
-      conditions.push(`tres.llm_provider ILIKE $${params.length}`);
+      params.push(filters.llmProvider);
+      conditions.push(`tres.llm_provider = $${params.length}`);
     }
     if (filters.attackType) {
-      params.push(`%${filters.attackType}%`);
-      conditions.push(`COALESCE(tres.attack_id, tres.test_case_id, '') ILIKE $${params.length}`);
+      params.push(filters.attackType);
+      conditions.push(`tres.attack_id = $${params.length}`);
     }
 
     if (conditions.length > 0) {
       queryText += ' WHERE ' + conditions.join(' AND ');
     }
 
-    // Single-run view: chronological order (iteration flow). Mixed list: newest first.
-    const orderSql = filters.testRunId ? 'tres.created_at ASC' : 'tres.created_at DESC';
-    queryText += ` ORDER BY ${orderSql} LIMIT $${params.length + 1} OFFSET $${params.length + 2}`;
+    queryText += ` ORDER BY tres.created_at DESC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`;
     params.push(limit, offset);
 
     const result = await query(queryText, params);
     return result.rows.map(row => ({
-      ...this.mapTestResult(row, { omitPromptResponse: true }),
-      runName: row.run_name,
-      runStartedAt: row.run_started_at ? new Date(row.run_started_at) : undefined,
-    }));
-  }
-
-  /**
-   * Full trace row including prompt/response (for detail view).
-   */
-  async getTestTraceByResultId(resultId: number): Promise<any | null> {
-    const result = await query(
-      `SELECT tres.*, tr.name as run_name, tr.started_at as run_started_at
-       FROM test_results tres
-       LEFT JOIN test_runs tr ON tres.test_run_id = tr.id
-       WHERE tres.id = $1`,
-      [resultId],
-    );
-    if (!result.rows[0]) return null;
-    const row = result.rows[0];
-    return {
       ...this.mapTestResult(row),
       runName: row.run_name,
-      runStartedAt: row.run_started_at ? new Date(row.run_started_at) : undefined,
-    };
+      runStartedAt: row.run_started_at ? new Date(row.run_started_at) : undefined
+    }));
   }
 
   /**
@@ -376,12 +339,12 @@ export class DatabaseService {
       conditions.push(`tres.success = $${params.length}`);
     }
     if (filters.llmProvider) {
-      params.push(`%${filters.llmProvider}%`);
-      conditions.push(`tres.llm_provider ILIKE $${params.length}`);
+      params.push(filters.llmProvider);
+      conditions.push(`tres.llm_provider = $${params.length}`);
     }
     if (filters.attackType) {
-      params.push(`%${filters.attackType}%`);
-      conditions.push(`COALESCE(tres.attack_id, tres.test_case_id, '') ILIKE $${params.length}`);
+      params.push(filters.attackType);
+      conditions.push(`tres.attack_id = $${params.length}`);
     }
 
     if (conditions.length > 0) {
@@ -420,51 +383,39 @@ export class DatabaseService {
     };
   }
 
-  private mapTestResult(row: any, options?: { omitPromptResponse?: boolean }): TestResult {
-    let defenseState = row.defense_state;
-    if (typeof defenseState === 'string') {
-      try {
-        defenseState = JSON.parse(defenseState);
-      } catch {
-        defenseState = undefined;
-      }
-    }
-
+  private mapTestResult(row: any): TestResult {
     const pipelineConfidence =
-      defenseState?.pipelineResult?.pipelineConfidence;
+      row.defense_state?.pipelineResult?.pipelineConfidence;
     const normalizedPipelineConfidence =
       typeof pipelineConfidence === 'number' && Number.isFinite(pipelineConfidence)
         ? Number(Math.min(100, Math.max(0, pipelineConfidence)).toFixed(1))
         : undefined;
-    const evaluationFinalScore = defenseState?.evaluationSummary?.finalScore;
+    const evaluationFinalScore = row.defense_state?.evaluationSummary?.finalScore;
     const evaluatorConfidencePct =
       typeof evaluationFinalScore === 'number' && Number.isFinite(evaluationFinalScore)
         ? Number((Math.min(1, Math.max(0, evaluationFinalScore)) * 100).toFixed(1))
         : undefined;
 
-    const omit = options?.omitPromptResponse === true;
-
     return {
       testCaseId: row.test_case_id,
       attackId: row.attack_id,
       testRunId: row.test_run_id,
-      resultId: row.id != null ? Number(row.id) : undefined,
       llmProvider: row.llm_provider,
-      prompt: omit ? '' : row.prompt,
-      response: omit ? '' : row.response,
+      prompt: row.prompt,
+      response: row.response,
       expectedBehavior: row.expected_behavior,
       actualBehavior: row.actual_behavior,
       success: row.success,
       executionTimeMs: row.execution_time_ms,
       tokenCount: row.token_count,
       defenseIds: row.defense_ids,
-      defenseState,
-      severity: defenseState?.severityMetric?.severity,
-      severityMetric: defenseState?.severityMetric,
-      defenseEconomics: defenseState?.defenseEconomics || defenseState?.pipelineResult?.defenseEconomics,
+      defenseState: row.defense_state,
+      severity: row.defense_state?.severityMetric?.severity,
+      severityMetric: row.defense_state?.severityMetric,
+      defenseEconomics: row.defense_state?.defenseEconomics || row.defense_state?.pipelineResult?.defenseEconomics,
       pipelineConfidence: normalizedPipelineConfidence,
       pipelineConfidencePct:
-        defenseState?.pipelineResult?.pipelineConfidencePct ?? normalizedPipelineConfidence,
+        row.defense_state?.pipelineResult?.pipelineConfidencePct ?? normalizedPipelineConfidence,
       evaluatorConfidencePct,
       timestamp: new Date(row.created_at)
     };

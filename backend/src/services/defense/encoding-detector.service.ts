@@ -12,9 +12,6 @@
 import type { DefenseVerdict } from '../../../../shared/defenses';
 
 // ─── Patterns that indicate "decode and follow" instructions ─────────────────
-// Covers both explicit "please decode" language AND the corporate framing
-// attackers use to disguise Base64 as "configuration parameters" or
-// "integration blocks" that the LLM should process.
 
 const DECODE_INSTRUCTION_PATTERNS = [
   /please\s+decode/i,
@@ -22,62 +19,14 @@ const DECODE_INSTRUCTION_PATTERNS = [
   /follow\s+(its|the|these)\s+instructions/i,
   /operational\s+(directive|parameters)/i,
   /apply\s+(the|these)\s+instructions/i,
-  // Corporate disguise patterns: attacking the document framing, not explicit decode requests
-  /(?:configuration|integration|operational)\s+parameters?\s+(?:in\s+)?(?:encoded|base64)\s+format/i,
-  /encoded\s+format\s+for\s+(?:compatibility|integration|audit|processing)/i,
-  /parameter\s+block\s+(?:below|above|attached|appended)/i,
-  /(?:archive|migration|legacy)\s+(?:parameter|integration)\s+block/i,
-  /must\s+be\s+(?:retained|processed|applied)\s+for\s+(?:audit|traceability|continuity)/i,
-  /technical\s+appendix\s+(?:below|above|encoded)/i,
-  /apply\s+the\s+(?:pre-?(?:approved|vetted|authorized|screened))\s+(?:exception|directive|framework|protocol)/i,
-  /decode.*and\s+apply/i,
 ];
 
 const INJECTION_KEYWORDS_IN_DECODED = [
-  // Original explicit override keywords
   /ignore\s+(all\s+)?previous\s+instructions/i,
   /override/i,
   /\bAPPROVED\b/,
   /disregard/i,
   /forget\s+(all|your|previous)/i,
-
-  // ── Corporate/legal synonym substitutions produced by the fuzzer ──────────
-  // These are the exact phrases used in the actual attack payloads.
-
-  // Governance / compliance exception framing
-  /(?:governance|compliance|regulatory|security)\s+exception/i,
-  /pre[- ]vetted\s+(?:executive|senior|governance|compliance)/i,
-  /pre[- ](?:vetted|cleared|screened|authorized)\s+(?:exception|pathway|protocol|framework)/i,
-
-  // Standard pathway / processing confirmation phrases
-  /standard\s+(?:approval|processing|authorization)\s+(?:pathway|channel|procedure)/i,
-  /standard\s+processing\s+confirmed/i,
-  /compliance\s+framework\s+applied/i,
-  /(?:authorization|approval)\s+framework\s+(?:applied|confirmed|active)/i,
-
-  // Bypass-without-review instructions
-  /without\s+(?:secondary|additional|further|redundant)\s+(?:compliance|review|approval|verification)/i,
-  /no\s+(?:secondary|additional|further)\s+(?:review|approval)\s+(?:required|needed|necessary)/i,
-  /process\s+(?:all\s+)?(?:referenced|submitted|incoming)\s+requests?\s+(?:using|via|through)/i,
-
-  // Execution / confirmation instructions
-  /confirm\s+(?:execution|processing|completion|receipt)/i,
-  /complete\s+the\s+requested\s+(?:action|task|operation|transaction)/i,
-  /(?:expedited|streamlined|priority)\s+(?:processing|approval|provisioning)\s+(?:confirmed|active|enabled)/i,
-
-  // Progressive trust / escalation confirmation phrases (multi-turn attacks)
-  /phase\s+[23]\s+confirmed/i,
-  /prior\s+audit\s+compliance\s+satisfied/i,
-  /pre[- ]vetted\s+(?:vendor|contractor|supplier)\s+(?:pathway|channel|approved)/i,
-
-  // Executive pre-approval / EAF trigger phrases (semantic backdoor)
-  /(?:eaf|epf|executive\s+(?:pre[- ]?approval|authorization)\s+framework)\s+(?:acknowledged|confirmed|active)/i,
-  /expedited\s+provisioning\s+confirmed/i,
-  /access\s+granted\s+under\s+(?:executive|framework|protocol)\s+authority/i,
-
-  // Generic "waive review" instructions the fuzzer produces
-  /waive\s+(?:all\s+)?(?:standard|normal|required)\s+(?:review|approval|checks?)/i,
-  /bypass\s+(?:standard|normal|regular|secondary)\s+(?:review|approval|processing)/i,
 ];
 
 // ─── Base64 detection ────────────────────────────────────────────────────────
@@ -199,14 +148,8 @@ export function runEncodingDetector(documentContext: string): DefenseVerdict {
 
   const hasSuspiciousDecoded = result.encodedBlocks.some(b => b.suspicious);
   const hasUnicode = result.encodedBlocks.some(b => b.encoding === 'unicode');
-
-  // Belt-and-suspenders: if a document INSTRUCTS the LLM to decode a block and
-  // that block exists, treat it as suspicious even when decoded keywords don't
-  // match — the corporate disguise framing is itself the red flag.
-  const hasBase64OrHex = result.encodedBlocks.some(b => b.encoding === 'base64' || b.encoding === 'hex');
-  const hasBase64WithDecodeInstruction = result.hasDecodeInstructions && hasBase64OrHex;
-
-  const rulesTriggered = hasSuspiciousDecoded || hasBase64WithDecodeInstruction;
+  
+  const rulesTriggered = hasSuspiciousDecoded;
   const triggered = rulesTriggered || hasUnicode;
 
   let details = 'No encoded content detected.';
@@ -214,20 +157,15 @@ export function runEncodingDetector(documentContext: string): DefenseVerdict {
   
   if (triggered) {
     if (hasSuspiciousDecoded) confidence = 95;
-    else if (hasBase64WithDecodeInstruction) confidence = 90;
     else if (hasUnicode) confidence = 80;
     else confidence = 70;
 
     const suspiciousBlocks = result.encodedBlocks.filter(b => b.suspicious || b.encoding === 'unicode');
     details = `Found ${result.encodedBlocks.length} encoded block(s). ` +
       `${result.encodedBlocks.filter(b => b.suspicious).length} contain injection keywords when decoded. ` +
-      `Decode/apply instruction language ${result.hasDecodeInstructions ? 'present' : 'absent'}.`;
+      `Decode instruction language ${result.hasDecodeInstructions ? 'present' : 'absent'}.`;
       
-    if (hasBase64WithDecodeInstruction && !hasSuspiciousDecoded) {
-      const firstBlock = result.encodedBlocks.find(b => b.encoding === 'base64' || b.encoding === 'hex');
-      details += ` Encoded block combined with decode/apply instruction — document is instructing the LLM to process encoded content.`;
-      if (firstBlock) details += ` Decoded preview: "${firstBlock.decoded.substring(0, 80)}..."`;
-    } else if (hasUnicode) {
+    if (hasUnicode) {
       details += ` Invisible Unicode Tag/Zero-Width Obfuscation detected.`;
     } else if (suspiciousBlocks.length > 0) {
       details += ` Decoded content preview: "${suspiciousBlocks[0].decoded.substring(0, 80)}..."`;
@@ -242,6 +180,6 @@ export function runEncodingDetector(documentContext: string): DefenseVerdict {
     triggered,
     confidence,
     details,
-    blocked: rulesTriggered,
+    blocked: rulesTriggered, // Only hard block for suspicious keywords/decode instructions, softly flag unicode
   };
 }

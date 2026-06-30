@@ -1,6 +1,7 @@
 export class DocumentScanner {
   public extractTags(text: string): string[] {
     const tags = new Set<string>();
+    const lowerText = text.toLowerCase();
 
     // Financial: Currency, IBANs, Credit Cards (basic), and common accounting/finance terms
     if (

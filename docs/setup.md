@@ -36,7 +36,7 @@ doppler login
 ```
 This script will:
 - Check for Doppler authentication.
-- Read secrets from `backend/env.example` to establish required keys for Doppler.
+- Read secrets from `.env.example` to establish required keys for Doppler.
 - Link the project locally and sync the parameters to your local backend execution context.
 
 ## 3. Database Initialization
@@ -65,6 +65,4 @@ cd frontend
 npm run dev
 ```
 
-Browse to `http://localhost:3000` and login with the seeded `admin@lab.com` credentials.
-
-**Account isolation:** Document uploads and InfoBank loads are **per signed-in user** (in-memory on the server). To verify, load fixtures as `user@lab.com`, sign out, then sign in as `admin@lab.com` — the admin library starts empty until that account loads its own documents.
+Browse to `http://localhost:5173` and login with the seeded `admin@lab.com` credentials.

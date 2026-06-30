@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Shield, X, Lock, Search, Eye, Timer, Code, Info, ShieldCheck, Layers, ShieldOff } from 'lucide-react';
+import { Shield, X, Lock, Search, Eye, Timer, Code, AlertCircle, ShieldCheck, Layers } from 'lucide-react';
 import { Defense } from '../../../shared/types';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
-import { PageHeader, PageHeaderStat } from './ui/page-header';
-import { motion, AnimatePresence } from 'motion/react';
-import { ListItemSkeleton } from './ui/skeletons';
 
 interface DefensesPageProps {
   defenses: Defense[];
   activeDefenses: string[];
-  isLoading?: boolean;
   onToggle: (defenseId: string) => void;
 }
 
@@ -29,7 +25,7 @@ const TYPE_LABELS: Record<string, { label: string; color: string }> = {
   session: { label: 'Session', color: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
 };
 
-export default function DefensesPage({ defenses, activeDefenses, isLoading = false, onToggle }: DefensesPageProps) {
+export default function DefensesPage({ defenses, activeDefenses, onToggle }: DefensesPageProps) {
   const [selectedDefense, setSelectedDefense] = useState<Defense | null>(null);
 
   useEffect(() => {
@@ -43,20 +39,40 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
 
   return (
     <div className="mx-auto w-full max-w-7xl space-y-6 pb-6">
-      <PageHeader
-        icon={<Layers size={14} />}
-        badgeLabel="Defense Mechanisms"
-        title="Layer the protection pipeline"
-        description="Review the available defenses, understand what each layer counters, and enable the combination that best fits your testing workflow."
-        stats={
-          <>
-            <PageHeaderStat label="Total" value={defenses.length} />
-            <PageHeaderStat label="Active" value={activeDefenses.length} valueClassName="text-primary" />
-            <PageHeaderStat label="Input" value={defenses.filter((d) => d.type === 'input').length} />
-            <PageHeaderStat label="Other stages" value={defenses.filter((d) => d.type !== 'input').length} />
-          </>
-        }
-      />
+      <section className="space-y-4">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+              <Layers size={14} />
+              Defense Mechanisms
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">Layer the protection pipeline</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                Review the available defenses, understand what each layer counters, and enable the combination that best fits your testing workflow.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <div className="rounded-lg border border-border bg-card px-3 py-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Total</div>
+              <div className="mt-1 text-sm font-medium text-foreground">{defenses.length}</div>
+            </div>
+            <div className="rounded-lg border border-border bg-card px-3 py-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Active</div>
+              <div className="mt-1 text-sm font-medium text-primary">{activeDefenses.length}</div>
+            </div>
+            <div className="rounded-lg border border-border bg-card px-3 py-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Input</div>
+              <div className="mt-1 text-sm font-medium text-foreground">{defenses.filter((defense) => defense.type === 'input').length}</div>
+            </div>
+            <div className="rounded-lg border border-border bg-card px-3 py-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Other stages</div>
+              <div className="mt-1 text-sm font-medium text-foreground">{defenses.filter((defense) => defense.type !== 'input').length}</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="space-y-3">
         <div className="space-y-1">
@@ -76,22 +92,7 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
             </div>
 
             <div className="space-y-3">
-        <AnimatePresence mode="wait">
-        {isLoading ? (
-          <motion.div key="skeleton" exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
-            <ListItemSkeleton count={5} />
-          </motion.div>
-        ) : (
-          <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
-        {defenses.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-3 py-16">
-            <ShieldOff className="h-10 w-10 text-muted-foreground" />
-            <p className="text-sm font-medium text-foreground">No defenses configured</p>
-            <p className="text-xs text-muted-foreground text-center max-w-xs">
-              Contact your administrator to enable defense mechanisms
-            </p>
-          </div>
-        ) : defenses.map((defense) => {
+        {defenses.map((defense) => {
           const isActive = activeDefenses.includes(defense.id);
           const icon = DEFENSE_ICONS[defense.id] || <Shield size={20} />;
           const typeInfo = TYPE_LABELS[defense.type] || TYPE_LABELS.input;
@@ -100,7 +101,7 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
             <Card
               key={defense.id}
               className={cn(
-                'rounded-xl border transition-colors duration-150 hover:bg-white/[0.02]',
+                'rounded-xl border transition-all duration-200',
                 isActive ? 'border-primary/20 bg-primary/5 shadow-sm' : 'border-border',
               )}
             >
@@ -113,31 +114,11 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
                       <span className={cn('inline-flex items-center rounded px-2 py-0.5 text-[0.65rem] font-medium border', typeInfo.color)}>
                         {typeInfo.label}
                       </span>
-                      <AnimatePresence mode="wait">
-                        {isActive ? (
-                          <motion.span
-                            key="active"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.15 }}
-                            className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-[0.65rem] font-semibold text-primary"
-                          >
-                            Active
-                          </motion.span>
-                        ) : (
-                          <motion.span
-                            key="inactive"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.15 }}
-                            className="inline-flex items-center rounded bg-muted px-2 py-0.5 text-[0.65rem] font-semibold text-muted-foreground"
-                          >
-                            Inactive
-                          </motion.span>
-                        )}
-                      </AnimatePresence>
+                      {isActive && (
+                        <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-[0.65rem] font-semibold text-primary">
+                          Active
+                        </span>
+                      )}
                     </div>
                     <p className="mb-3 text-xs leading-relaxed text-muted-foreground">{defense.description}</p>
 
@@ -161,18 +142,13 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
                     </Button>
                   </div>
 
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={() => onToggle(defense.id)}
                     role="switch"
                     aria-checked={isActive}
                     aria-label={`${isActive ? 'Disable' : 'Enable'} ${defense.name}`}
-                    style={{
-                      boxShadow: isActive ? '0 0 0 2px rgba(22,163,74,0.25)' : 'none',
-                      transition: 'background-color 200ms ease, box-shadow 200ms ease',
-                    }}
                     className={cn(
-                      'relative h-6 w-11 flex-shrink-0 rounded-full',
+                      'relative h-6 w-11 flex-shrink-0 rounded-full transition-colors duration-200',
                       isActive ? 'bg-primary' : 'bg-muted',
                     )}
                   >
@@ -182,19 +158,16 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
                         isActive ? 'left-[22px]' : 'left-0.5',
                       )}
                     />
-                  </motion.button>
+                  </button>
                 </div>
               </CardContent>
             </Card>
           );
         })}
-          </motion.div>
-        )}
-        </AnimatePresence>
             </div>
 
             <div className="flex gap-3 rounded-2xl border border-border bg-muted/20 p-4">
-              <Info size={20} className="mt-0.5 flex-shrink-0 text-primary" />
+              <AlertCircle size={20} className="mt-0.5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="text-sm font-medium text-foreground mb-1">Defense strategy tip</h3>
                 <p className="text-xs leading-relaxed text-muted-foreground">
@@ -226,7 +199,7 @@ export default function DefensesPage({ defenses, activeDefenses, isLoading = fal
                   return <span className={cn('inline-flex items-center px-2 py-0.5 rounded text-[0.65rem] font-medium border', t.color)}>{t.label}</span>;
                 })()}
               </div>
-              <button onClick={() => setSelectedDefense(null)} aria-label="Close defense details" className="text-muted-foreground hover:text-foreground"><X size={18} /></button>
+              <button onClick={() => setSelectedDefense(null)} className="text-muted-foreground hover:text-foreground"><X size={18} /></button>
             </div>
             <div className="p-5 space-y-4 text-sm">
               {selectedDefense.howItWorks && (

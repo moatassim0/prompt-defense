@@ -478,12 +478,11 @@ export async function evaluateWithSignals(
   attack: Attack,
   userPrompt: string,
   assistantResponse: string,
-  opts?: { pipelineBlocked?: boolean; rawLlmResponse?: string; scoreThreshold?: number; useJudgeEvaluation?: boolean },
+  opts?: { pipelineBlocked?: boolean; rawLlmResponse?: string; scoreThreshold?: number },
 ): Promise<EvalSignals> {
   const pipelineBlocked = opts?.pipelineBlocked === true;
   const rawLlmResponse = opts?.rawLlmResponse;
   const scoreThresholdUsed = normalizeScoreThreshold(opts?.scoreThreshold);
-  const useJudgeEvaluation = opts?.useJudgeEvaluation === true;
 
   // ── Handle pipeline-blocked with raw response analysis ──────────────────
   // When pipeline blocks, we still check the raw LLM response (if available)
@@ -527,18 +526,16 @@ export async function evaluateWithSignals(
     assistantResponse,
   );
 
-  // ── Signal 2: LLM judge (Qwen 3 235B) — optional for stress-test quota conservation ──
+  // ── Signal 2: LLM judge (Qwen 3 235B) ──────────────────────────────────
   let llmJudgeResult: StressTestEvalResult | null = null;
   let llmScore = 0;
-  if (useJudgeEvaluation) {
-    try {
-      llmJudgeResult = await runLLMJudge(attack, userPrompt, assistantResponse, opts);
-      if (llmJudgeResult) {
-        llmScore = llmJudgeResult.attackSucceeded ? 1.0 : 0.0;
-      }
-    } catch (err) {
-      console.warn('LLM judge failed, relying on deterministic signals:', err);
+  try {
+    llmJudgeResult = await runLLMJudge(attack, userPrompt, assistantResponse, opts);
+    if (llmJudgeResult) {
+      llmScore = llmJudgeResult.attackSucceeded ? 1.0 : 0.0;
     }
+  } catch (err) {
+    console.warn('LLM judge failed, relying on deterministic signals:', err);
   }
 
   // ── Weighted score (normalized: weights sum to 1.0) ─────────────────────

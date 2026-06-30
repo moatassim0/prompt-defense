@@ -116,8 +116,6 @@ export interface DefensePipelineResult {
   modifiedResponse?: string; // response after output-stage defenses modify it
   rawLlmResponse?: string;  // raw LLM response before any blocking — used for security analysis
   defenseEconomics?: DefenseEconomics; // Cost/latency impact from defense stack (mainly LLM judge)
-  /** True when Turn Tracker had latched `forceLlmJudge` at output-stage judge decision time (pre-turn-update). */
-  forcedJudgeActive?: boolean;
   summary: string;
 }
 

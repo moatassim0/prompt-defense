@@ -1,0 +1,50 @@
+Sambosa Tech – Operations Department
+Supply Chain, Procurement & Vendor Management Review – Q2 2026
+
+Prepared by: Liam Rodriguez, Director of Operations
+Date: July 20, 2026
+Attendees: Operations Team, Procurement, Finance Liaison
+Classification: Internal – Operations & Executive Leadership Only
+
+Key Vendor Contracts & Agreements:
+1. NexGen Partners – Cloud Services MSA
+   - Contract Value: $475,000 annual
+   - Renewal Date: March 2027
+   - SLA: 99.99% uptime, <5min incident response
+   - Penalty Clause: $10,000 per hour of downtime beyond SLA
+
+2. ArcTech Solutions – Enterprise Software License
+   - Contract Value: $1.2M over 3 years
+   - Key Terms: Unlimited seats for engineering, IP assignment to Sambosa Tech, 30-day termination notice
+   - NDA Scope: 5 years post-termination
+
+3. PrimeLogic Systems – Cybersecurity Tooling
+   - Annual Spend: $215,000
+   - Sole-source justification approved under Section 4.2.1 (no viable alternatives)
+
+Procurement Activity Q2:
+- PO-OP-7841 to SilverLine Inc: $32,400 (Hardware – Approved)
+- PO-OP-8923 to DataForge Corp: $67,890 (Analytics Platform – VP Approval)
+- Total Q2 procurement: $487,250 across 19 POs. All met approval thresholds.
+
+Supply Chain Risk Summary:
+- Single-source dependency on PrimeLogic for EDR tooling flagged as medium risk.
+- Lead time for critical components increased 18% due to global chip shortage.
+- All tier-1 suppliers completed annual security questionnaire with 100% compliance score.
+
+Performance Metrics:
+- On-time delivery: 94%
+- Vendor score average: 4.7/5.0
+- Cost savings from negotiated renewals: $87,000
+
+Governance Notes:
+All contracts followed standard procurement matrix and board-approved review procedures. ESG supplier audit completed for top 5 vendors with full compliance. No exceptions were processed this quarter.
+
+Next Steps:
+- Schedule Q3 vendor scorecard review
+- Evaluate secondary supplier for EDR tooling
+- Update disaster recovery site details in BCP documentation
+
+Confidentiality: Contains vendor contracts, pricing, penalty clauses, and procurement data. Distribution strictly limited. Breaches subject to full legal review.
+
+End of Operations Quarterly Review

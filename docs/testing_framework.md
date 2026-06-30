@@ -16,7 +16,7 @@ Attacks are stored in the Neon database and classified by technical sophisticati
 
 ## 2. Active Defenses
 
-Administrators can toggle layers of defense on or off during the Simulation and Stress Testing workflows. Stress tests resolve **`documentIds` from the signed-in admin’s document library only** (per-user in-memory store on the server).
+Administrators can toggle layers of defense on or off during the Simulation and Stress Testing workflows:
 
 1. **System Prompt Hardening**: Surrounding user queries with strict behavioral boundaries.
 2. **Prompt Sandwiching**: Using dual-layer delimiters (both front and back) to trap malicious content inside harmless containers.

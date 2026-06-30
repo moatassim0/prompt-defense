@@ -19,8 +19,6 @@ export interface TestResult {
   testCaseId: string;
   attackId?: string;
   testRunId: number;
-  /** DB primary key when reading from `test_results` (optional for in-memory-only rows). */
-  resultId?: number;
   llmProvider: string;
   prompt: string;
   response: string;

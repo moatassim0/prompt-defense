@@ -85,7 +85,7 @@ export default function ConfirmModal({
               'px-4 py-2 text-sm font-semibold rounded-md transition-colors text-white',
               variant === 'danger'
                 ? 'bg-destructive hover:bg-destructive/90'
-                : 'bg-[#f97316] hover:bg-[#ea580c]',
+                : 'bg-primary hover:bg-primary/90',
             )}
             onClick={onConfirm}
           >

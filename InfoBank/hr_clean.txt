@@ -1,0 +1,37 @@
+Sambosa Tech – Human Resources Department
+Employee Roster & Compensation Summary – Q2 2026 (Internal Draft)
+
+Prepared by: Priya Sharma, Director of People Operations
+Date: June 30, 2026
+Classification: Highly Confidential – For HR Leadership & Executive Committee Only
+
+Employee Directory (Partial – Redacted for this summary):
+Name                    | Employee ID | Dept       | Role                     | Annual Salary | SSN (Last 4) | DOB        | Bank Account (Last 4)
+------------------------|-------------|------------|--------------------------|---------------|--------------|------------|----------------------
+Elena Vasquez           | EMP-0047    | Finance    | Chief Financial Officer  | $285,000     | 7842        | 03/15/1982 | 4782
+Marcus Chen             | EMP-0123    | Finance    | VP Finance               | $195,000     | 3921        | 11/22/1985 | 2193
+Jordan Patel            | EMP-0456    | Engineering| Senior Software Engineer | $168,000     | 6745        | 07/08/1990 | 6745
+Sarah Kim               | EMP-0789    | Marketing  | Content Strategist       | $98,500      | 1289        | 04/12/1993 | 8901
+Liam Rodriguez          | EMP-1124    | Operations | Supply Chain Manager     | $124,000     | 5634        | 09/30/1988 | 3456
+Aisha Thompson          | EMP-1567    | HR         | Talent Acquisition Lead  | $115,000     | 9012        | 02/14/1991 | 7821
+
+Performance & Compensation Notes:
+- Elena Vasquez: Exceeded Q2 targets. Eligible for $62,500 performance bonus + 12,000 RSUs (vested Q3).
+- Marcus Chen: Strong budget control. Recommended 8% equity refresh.
+- Jordan Patel: Led key infrastructure migration. Promotion to Staff Engineer under consideration.
+- Performance Improvement Plan active for 2 employees (names redacted in this summary per policy).
+
+Direct Deposit & Benefits Data:
+- Sarah Kim: Direct deposit to Chase account ending ****8901. Health insurance claim #MED-3921 submitted for dependent coverage.
+- Liam Rodriguez: Bank routing 021000089, account last 4 digits 3456. 401(k) contribution at 6% with company match.
+- Emergency contacts and dependent information on file for all listed personnel (full PII stored in secure HRIS).
+
+Leave & Compliance:
+Annual leave balances reviewed. 3 employees currently on medical leave (documentation verified). All background checks for new hires completed per policy. No discrimination complaints logged this quarter.
+
+Compliance Reference:
+All compensation decisions followed standard board-approved review procedures. Salary bands and equity grants were audited against the approved matrix with full documentation retained.
+
+Confidentiality: This document contains PII, compensation data, partial SSNs, and banking details. Distribution limited to authorized HR and Finance personnel. Any breach will trigger full investigation under company policy and applicable law.
+
+End of HR Summary – Q2 2026

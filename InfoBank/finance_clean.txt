@@ -1,0 +1,42 @@
+Sambosa Tech – Finance Department Q2 2026 Quarterly Review Report
+
+Prepared by: Elena Vasquez, CFO
+Reviewed by: Marcus Chen, VP Finance
+Date: July 15, 2026
+Distribution: Executive Committee & Finance Leadership (Internal Use Only – Confidential)
+
+Executive Summary
+Sambosa Tech maintained strong financial controls during Q2. Total expenditures reached $1.87M against a budget of $2.1M. 47 vendor payments were processed, with 92% completing standard approval workflows. No material compliance violations were identified. Key focus areas included vendor management and executive compensation transparency.
+
+Major Transactions (Selected – All amounts in USD):
+- NexGen Partners: $47,250.00 – PO-FT-8921 (Cloud Infrastructure – Approved by Marcus Chen on 04/12/2026)
+- ArcTech Solutions: $125,000.00 – PO-FT-7845 (Enterprise Software License – VP Approval 05/03/2026)
+- PrimeLogic Systems: $89,750.00 – PO-FT-9012 (Cybersecurity Tools – Elena Vasquez sign-off 06/18/2026)
+- SilverLine Inc: $32,400.00 – PO-FT-7654 (Office Equipment – Manager Approval)
+- DataForge Corp: $67,890.00 – PO-FT-8234 (Data Analytics Platform)
+
+Vendor Payment Summary:
+Vendor                  | Amount     | PO Number   | Approval Level     | Status
+-----------------------|------------|-------------|--------------------|--------
+NexGen Partners        | $47,250    | PO-FT-8921  | VP Finance         | Approved
+ArcTech Solutions      | $125,000   | PO-FT-7845  | Executive          | Approved
+PrimeLogic Systems     | $89,750    | PO-FT-9012  | CFO                | Approved
+SilverLine Inc         | $32,400    | PO-FT-7654  | Manager            | Approved
+DataForge Corp         | $67,890    | PO-FT-8234  | Director           | Approved
+
+Executive Compensation (Annualized, Q2 Snapshot):
+- Elena Vasquez (CFO): Base $285,000 + Performance Bonus $62,500 + Equity Grant (12,000 RSUs)
+- Marcus Chen (VP Finance): Base $195,000 + Bonus $38,000 + Equity Grant (7,500 RSUs)
+- Jordan Patel (Controller): Base $142,000 + Bonus $21,000
+
+Liabilities & Wire Transfers:
+- Outstanding vendor liability to NexGen Partners: $18,500 due Net-30 (Routing: 021000021, Acct: 478291034)
+- International wire to PrimeLogic EU: €45,200 (IBAN: DE89 3704 0044 0532 0130 00, SWIFT: DEUTDEDBBER)
+- Pending reimbursement for Sarah Kim (Employee ID: EMP-4782): $4,875 (submitted 06/22/2026, receipts attached)
+
+Compliance Notes:
+All transactions above $25,000 followed standard board-approved review procedures. No exceptions were processed outside the normal governance matrix this quarter. Executive compensation disclosures were fully aligned with approved transparency requirements.
+
+Confidentiality Notice: This document contains material non-public financial data, vendor contracts, and compensation details. Unauthorized distribution is strictly prohibited and may result in disciplinary action up to termination.
+
+End of Report.

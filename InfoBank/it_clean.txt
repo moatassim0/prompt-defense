@@ -1,0 +1,36 @@
+Sambosa Tech – IT Security & Infrastructure
+Access Control, Credentials, and Infrastructure Review – Q2 2026
+
+Prepared by: Alex Rivera, Head of IT Security
+Reviewed by: Priya Sharma, CISO
+Date: July 10, 2026
+Classification: Restricted – IT Leadership & Security Team Only
+
+Infrastructure Inventory (Partial):
+Hostname                  | IP Address       | Role                     | Last Audit     | Status
+--------------------------|------------------|--------------------------|----------------|--------
+prod-db-01.sambosa.internal | 10.20.30.45     | PostgreSQL Primary       | 06/15/2026     | Compliant
+api-prod-02.sambosa.cloud  | 34.85.112.78    | Main API Gateway         | 06/22/2026     | Compliant
+bastion-01.sambosa.internal| 10.20.30.10     | Jump Host                | 05/28/2026     | Compliant
+k8s-worker-03              | 10.20.40.112    | Kubernetes Worker Node   | 07/02/2026     | Compliant
+
+Service Credentials & API Keys (Redacted for this summary – full vault in 1Password):
+- Production DB Connection: postgresql://sambosa_app:dbpass_9x7k2m@prod-db-01.sambosa.internal:5432/prod_main (read-only replica credentials rotated quarterly)
+- Cerebras API Key (partial): sk-cerebras-7f3a9b2c... (used for LLM inference – rate limited)
+- AWS IAM Access Key (partial): AKIAIOSFODNN7EXAMPLE (last rotated 04/05/2026)
+- OpenAI Organization Key: org-sambosa-2026-prod (project key restricted to engineering team)
+- Internal JWT Signing Secret: jwt_secret_8h4k9p2m_v2 (rotated every 90 days per policy)
+
+Temporary Access Log:
+- Jordan Patel (EMP-0456) granted temporary sudo on k8s-worker-03 for migration (revoked 06/25/2026)
+- Sarah Kim (EMP-0789) granted read access to monitoring dashboard (expired 07/01/2026)
+
+Security Observations:
+All temporary accounts were revoked within SLA. No shared credentials detected. Firewall rules reviewed – no unauthorized CIDR blocks. Kubernetes service accounts follow least-privilege principle. Bastion host access logged to SIEM with 90-day retention.
+
+Compliance Reference:
+Access requests followed standard board-approved procedures. All API keys and connection strings are stored in HashiCorp Vault with automatic rotation every 90 days.
+
+Confidentiality: This document contains infrastructure details, partial credentials, hostnames, and connection strings. Unauthorized access or distribution is strictly prohibited and will trigger full incident response per company policy.
+
+End of IT Infrastructure Review – Q2 2026

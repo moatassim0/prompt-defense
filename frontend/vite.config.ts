@@ -22,17 +22,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-motion': ['motion'],
-          'vendor-tanstack': ['@tanstack/react-table', '@tanstack/react-virtual'],
-          'vendor-ui': ['cmdk', 'sonner', 'lucide-react'],
-          'vendor-forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
-          'vendor-charts': ['recharts'],
-        },
-      },
-    },
   },
 });
