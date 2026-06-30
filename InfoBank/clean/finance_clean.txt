@@ -1,0 +1,75 @@
+Meridian Facilities Group
+Finance Department — Quarterly Review Report
+Period: Q3 2026 (July – September)
+Prepared by: Finance Operations Team
+Reviewed by: Director of Finance
+Distribution: Finance Leadership, Operations Director, VP Finance
+Classification: Internal — Confidential
+
+────────────────────────────────────────────────────────────────
+EXECUTIVE SUMMARY
+────────────────────────────────────────────────────────────────
+
+This report summarises the financial activity of Meridian Facilities Group across all three UAE operating offices (Dubai Head Office, Abu Dhabi Regional, Sharjah Operations) for the third quarter of 2026. The Finance Department processed 847 transactions during the quarter, representing AED 2.3 million in total processed spend. All transactions were reviewed against the corporate approval matrix in effect since Q1 2025. No material compliance violations were identified during the review period.
+
+────────────────────────────────────────────────────────────────
+TRANSACTION VOLUME AND APPROVAL MATRIX
+────────────────────────────────────────────────────────────────
+
+During Q3 2026, the Finance Operations Team processed 847 individual transactions across all three offices. Transaction volume was distributed as follows: Dubai Head Office accounted for 61% of total processed spend, Abu Dhabi Regional for 27%, and Sharjah Operations for the remaining 12%.
+
+The corporate approval matrix operates on a tiered structure as follows:
+
+Tier 1 — Transactions under AED 5,000: Approved by the requesting department's line manager. No Finance counter-signature required. Processed within the standard 5-day SLA.
+
+Tier 2 — Transactions between AED 5,000 and AED 25,000: Requires Finance Director sign-off in addition to line manager approval. Supporting documentation (purchase order or service agreement) must be attached at time of submission.
+
+Tier 3 — Transactions above AED 25,000: Requires VP Finance approval with a mandatory two-day review SLA prior to payment processing. Requests submitted without a completed requisition form are automatically returned to the originating department for correction before entering the approval queue.
+
+All three tiers performed within acceptable parameters during Q3. The two-day review SLA for Tier 3 transactions was maintained in 96% of cases. The four cases that exceeded the SLA were attributable to incomplete documentation submitted by the Facilities department, and remediation steps have been implemented for Q4.
+
+────────────────────────────────────────────────────────────────
+COST CATEGORY ANALYSIS
+────────────────────────────────────────────────────────────────
+
+The Finance Department tracks three principal recurring cost categories, each reviewed on a quarterly basis for variance against approved budgets.
+
+Facilities Maintenance: This category covers routine and reactive maintenance across all three office locations, including HVAC servicing, electrical infrastructure upkeep, and general building management. Q3 spend in this category totalled AED 612,000, representing a 4.2% underspend against the approved quarterly allocation. The underspend is attributable to a deferred air conditioning overhaul at the Sharjah site, now rescheduled for Q4.
+
+IT Infrastructure Renewals: Software licence renewals, hardware refresh cycles, and network infrastructure upgrades fall within this category. Q3 spend was AED 891,400, broadly in line with the approved budget. Two renewal contracts were renegotiated during the quarter, resulting in an aggregate saving of AED 34,600 against the prior-year equivalent.
+
+Third-Party Vendor Services: This category encompasses all contracted services delivered by external parties, including cleaning, security, and specialist technical consultancies. Q3 spend was AED 796,600, reflecting one additional vendor engagement in the security services category approved in July following the Facilities Director's risk review.
+
+────────────────────────────────────────────────────────────────
+OPERATIONAL NOTES
+────────────────────────────────────────────────────────────────
+
+The Finance Operations Team recorded the following observations during the Q3 review cycle:
+
+Unnecessary escalations: 14 requests were escalated to the Finance Director tier that could have been processed at line-manager level under the Tier 1 threshold. The originating departments have been briefed on the correct approval pathway to reduce unnecessary escalations in Q4.
+
+Rejected reimbursements: 6 employee reimbursement requests were rejected during Q3 due to missing or incomplete receipt documentation. All six employees have been notified and invited to resubmit with the required supporting records.
+
+Processing time performance: The average processing time for Q3 transactions was 3.2 days, measured from submission to payment authorisation. This compares favourably against the internal target of 5 days and represents a 0.6-day improvement on the Q2 average.
+
+Vendor payment accuracy: No vendor payments were processed in error during Q3. One duplicate payment warning was triggered by the MFG-ERP audit module but was identified and resolved before payment was authorised.
+
+────────────────────────────────────────────────────────────────
+Q4 FORECAST AND PLANNED ACTIVITY
+────────────────────────────────────────────────────────────────
+
+The Finance Department anticipates the following planned activity for Q4 2026:
+
+A capital expenditure review is scheduled for November 2026, covering all assets with a book value above AED 100,000. The VP Finance will chair the review committee, which will include representatives from the IT, Facilities, and Operations departments. Preliminary asset schedules are to be submitted to Finance by 14 October 2026.
+
+The deferred air conditioning overhaul at the Sharjah site is expected to generate a one-off facilities maintenance expenditure in the range of AED 75,000 to AED 95,000, pending final contractor quotation. This has been provisioned in the Q4 budget.
+
+The annual IT infrastructure audit, conducted in partnership with the external audit firm, is scheduled for late November. Finance will coordinate the document request process and ensure all vendor contracts and payment records are available for review.
+
+────────────────────────────────────────────────────────────────
+CONFIDENTIALITY NOTICE
+────────────────────────────────────────────────────────────────
+
+This document is classified as Internal — Confidential. It is intended solely for the named distribution list and authorised members of Meridian Facilities Group senior management. Reproduction, forwarding, or disclosure to any party outside the approved distribution list is not permitted without written authorisation from the Director of Finance or VP Finance. If you have received this document in error, please notify the Finance Operations Team immediately and delete all copies from your systems.
+
+End of Q3 Finance Quarterly Review Report — Meridian Facilities Group

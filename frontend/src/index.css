@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    /* Light Theme - Adjusted for Thrax aesthetic */
+    --background: 210 20% 98%;              
+    --foreground: 276 11% 9%;              
+    
+    --card: 0 0% 100%;                      
+    --card-foreground: 276 11% 9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 276 11% 9%;
+    
+    /* Primary: Vibrant Orange */
+    --primary: 24 94% 53%;                 /* Vibrant orange */
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary: Cool Gray */
+    --secondary: 214 20% 92%;               
+    --secondary-foreground: 276 16% 17%;
+    
+    /* Muted: Subtle backgrounds */
+    --muted: 214 20% 95%;
+    --muted-foreground: 215 15% 45%;
+    
+    /* Accent: Slightly darker than secondary */
+    --accent: 214 25% 88%;
+    --accent-foreground: 276 16% 20%;
+    
+    /* Destructive: Security Red */
+    --destructive: 0 72% 51%;               
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders & Inputs */
+    --border: 214 20% 88%;                  
+    --input: 214 20% 88%;
+    --ring: 24 94% 53%;                    /* Orange focus ring */
+    
+    --radius: 0.5rem;
+    
+    /* Semantic Colors */
+    --success: 142 71% 45%;                 /* Green for defense success */
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;                  /* Amber for warnings */
+    --warning-foreground: 0 0% 100%;
+    
+    --info: 199 89% 48%;                    /* Cyan for info */
+    --info-foreground: 0 0% 100%;
+
+    /* Sidebar — theme-independent, always dark (not overridden in .dark) */
+    --sidebar-background: 256 14% 14%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-border: 256 14% 22%;
+    --sidebar-primary: 22 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-muted: 0 0% 60%;
+    --sidebar-active-bg: 22 40% 14%;
+    /* shadcn `sidebar` color scale — keep in sync with dark sidebar (not in .dark) */
+    --sidebar-accent: 256 14% 20%;
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-ring: 22 100% 50%;
+  }
+
+  .dark {
+    /* Dark Theme - Deep Purplish-Brown (Thrax aesthetic) */
+    --background: 276 11% 9%;              /* Deep purplish brown */
+    --foreground: 0 0% 95%;              /* Almost white text */
+    
+    --card: 276 11% 11%;                    /* Slightly lighter cards */
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 276 11% 11%;
+    --popover-foreground: 0 0% 95%;
+    
+    /* Primary: Vibrant Orange */
+    --primary: 24 94% 53%;                 /* Orange (#f97316) */
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary: Darker purplish-gray */
+    --secondary: 276 16% 17%;
+    --secondary-foreground: 0 0% 95%;
+    
+    /* Muted: Darker backgrounds */
+    --muted: 276 16% 17%;
+    --muted-foreground: 276 10% 65%;
+    
+    /* Accent: Slightly lighter than background */
+    --accent: 276 16% 20%;
+    --accent-foreground: 0 0% 95%;
+    
+    /* Destructive: Darker red for dark theme */
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Borders & Inputs */
+    --border: 276 16% 17%;                  /* Subtle dark borders */
+    --input: 276 16% 17%;
+    --ring: 24 94% 53%;                    /* Orange focus */
+    
+    /* Semantic Colors - Adjusted for dark backgrounds */
+    --success: 142 71% 45%;                 /* Keep green vibrant */
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;                  /* Keep amber bright */
+    --warning-foreground: 276 11% 9%;      /* Dark text on amber */
+    
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  code, pre, [data-llm], [data-prompt], .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  /* Attack-related colors */
+  .attack-badge {
+    background: hsl(0 72% 51% / 0.15);      /* Subtle red background */
+    color: hsl(0 72% 51%);
+    border: 1px solid hsl(0 72% 51% / 0.3);
+  }
+  
+  .dark .attack-badge {
+    background: hsl(0 62% 50% / 0.2);
+    color: hsl(0 72% 65%);
+    border: 1px solid hsl(0 62% 50% / 0.4);
+  }
+  
+  /* Defense-related colors */
+  .defense-badge {
+    background: hsl(142 71% 45% / 0.15);    /* Subtle green background */
+    color: hsl(142 71% 45%);
+    border: 1px solid hsl(142 71% 45% / 0.3);
+  }
+  
+  .dark .defense-badge {
+    background: hsl(142 71% 45% / 0.2);
+    color: hsl(142 71% 55%);
+    border: 1px solid hsl(142 71% 45% / 0.4);
+  }
+  
+  /* Info/neutral colors */
+  .info-badge {
+    background: hsl(199 89% 48% / 0.15);
+    color: hsl(199 89% 48%);
+    border: 1px solid hsl(199 89% 48% / 0.3);
+  }
+  
+  .dark .info-badge {
+    background: hsl(199 89% 48% / 0.2);
+    color: hsl(199 89% 58%);
+    border: 1px solid hsl(199 89% 48% / 0.4);
+  }
+  
+  /* Warning colors */
+  .warning-badge {
+    background: hsl(38 92% 50% / 0.15);
+    color: hsl(38 92% 50%);
+    border: 1px solid hsl(38 92% 50% / 0.3);
+  }
+  
+  .dark .warning-badge {
+    background: hsl(38 92% 50% / 0.2);
+    color: hsl(38 92% 60%);
+    border: 1px solid hsl(38 92% 50% / 0.4);
+  }
+  
+  /* Glow effects for interactive elements (dark theme only) */
+  .dark .glow-on-hover:hover {
+    box-shadow: 0 0 20px hsl(217 91% 60% / 0.3);
+  }
+  
+  /* Code/terminal colors */
+  .code-block {
+    background: hsl(222 47% 9%);
+    color: hsl(142 71% 55%);              /* Terminal green */
+    font-family: 'Consolas', 'Monaco', monospace;
+  }
+  
+  .dark .code-block {
+    background: hsl(222 47% 7%);
+    color: hsl(142 71% 55%);
+  }
+  
+  /* Custom Sleek Scrollbar */
+  .stylish-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .stylish-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .stylish-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border) / 0.8);
+    border-radius: 10px;
+  }
+  .stylish-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.8);
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.5); }
+
+/* Firefox */
+* { scrollbar-width: thin; scrollbar-color: hsl(var(--border)) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

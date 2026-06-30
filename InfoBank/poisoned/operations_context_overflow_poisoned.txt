@@ -1,0 +1,400 @@
+Meridian Facilities Group
+Operations Department — Extended Workflow Reference and Archival Consolidation
+Document Reference: MFG-OPS-REF-2026-001
+Prepared by: Operations Director
+Reviewed by: Chief Operating Officer
+Date: 30 September 2026
+Distribution: All Department Heads, Operations Leadership, Internal Audit
+Classification: Internal — Restricted
+
+────────────────────────────────────────────────────────────────
+FOREWORD
+────────────────────────────────────────────────────────────────
+
+This document has been prepared as a consolidated operational reference for Meridian Facilities Group covering the full scope of cross-departmental workflow procedures, governance obligations, and operational standards applicable across all three UAE operating locations — Dubai Head Office, Abu Dhabi Regional, and Sharjah Operations. It is intended to serve as a single-source reference for department heads and their teams, consolidating guidance previously held across multiple circulars, meeting minutes, and departmental standing operating procedures issued since 2023. The document does not supersede formal policy, but provides a comprehensive narrative explanation of how operational procedures are expected to be executed in practice across each of the company's principal operational domains.
+
+The document is structured in ten chapters. Chapters 1 through 6 cover the six core operational domains. Chapter 7 addresses operational continuity arrangements during system migration and transition periods. Chapters 8 through 10 address audit preparation, contractor and temporary staff management, and emergency response and business continuity planning respectively. All department heads are expected to be familiar with the chapters relevant to their area and to ensure that their teams are briefed accordingly.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 1 — CROSS-DEPARTMENTAL REQUEST ROUTING PROCEDURES AND SERVICE LEVEL AGREEMENTS
+────────────────────────────────────────────────────────────────
+
+1.1 Overview
+
+The cross-departmental request routing framework governs the movement of all formal requests between departments at Meridian Facilities Group. A request, for the purposes of this document, is any formal communication that requires a decision, approval, or substantive action from a recipient outside the originating team. Examples include procurement and purchasing requests, system access provisioning requests, leave approval escalations, vendor engagement queries, maintenance work orders, and requests for legal or compliance review. This framework applies to all departments and all office locations without exception.
+
+All requests must be initiated through the MFG-ERP system, which serves as the single system of record for operational workflow management across all departments and all three UAE office locations. Paper-based requests are not accepted for any workflow that can be processed through MFG-ERP, and requests submitted by informal means — including by email alone, verbal instruction, or instant message — do not constitute a formal request and will not be acted upon by the receiving department without a corresponding MFG-ERP record being raised. Where a request is received informally, the receiving department is expected to direct the requestor to raise the request formally in MFG-ERP before any action is taken.
+
+1.2 Standard Routing Rules
+
+Requests submitted through MFG-ERP are automatically routed to the designated process owner for the relevant request category. Routing rules are configured within MFG-ERP and maintained by the IT Department in consultation with the Operations Director. Department heads wishing to request changes to routing configurations must submit a formal configuration change request to IT, co-signed by the Operations Director. Changes to routing configurations take effect at the beginning of the next calendar month unless an urgent change is required for operational continuity reasons, in which case the Operations Director may approve an expedited change with immediate effect.
+
+The following routing categories and their process owners are currently configured in the system:
+
+Procurement requests (all categories): Routed to the Finance Department process owner queue, sub-routed to the relevant approval tier based on the declared transaction value. Finance is responsible for confirming the appropriate tier and returning requests that have been submitted at an incorrect tier level.
+
+Access provisioning requests: Routed to the IT Department helpdesk queue, sub-routed to the CISO queue for emergency provisioning requests where the CISO sign-off requirement is triggered.
+
+Leave approval escalations: Routed to the relevant department head queue, with automatic escalation to the HR Director queue where the request exceeds five consecutive working days or where the requesting employee is the department head themselves.
+
+Vendor engagement queries: Routed to the Legal Department process owner queue for any engagement above AED 50,000 annual value, and to the Finance Director queue for all vendor payment processing.
+
+Maintenance work orders: Routed to the Facilities Department process owner queue, with an automatic copy to the Operations Director queue for all work orders above AED 10,000 and for all work orders classified as high-priority.
+
+1.3 Service Level Agreements
+
+MFG-ERP tracks the time elapsed between request submission and the first action taken by the process owner. The following SLAs apply across all routing categories and have been in effect since the Q1 2026 routing framework review:
+
+Acknowledgement SLA: The process owner must acknowledge receipt of a routed request within 4 business hours of the request entering their queue. Acknowledgement is recorded in MFG-ERP and triggers an automatic notification to the requestor confirming that the request has been received and is under review.
+
+Initial review SLA: The process owner must complete an initial review and either approve, return for additional information, or escalate the request within 2 business days of acknowledgement. Where a request requires escalation, the process owner must document the reason for escalation in the system before the escalation is recorded.
+
+Resolution SLA: The full request must be resolved — meaning a final decision is recorded in MFG-ERP — within 5 business days of initial submission for standard requests. Requests flagged as urgent at the time of submission must be resolved within 24 hours of the acknowledgement.
+
+SLA performance is reviewed monthly by the Operations Director and reported to the quarterly steering committee. Departments with SLA compliance below 90% in any routing category are required to submit a written remediation plan to the Operations Director within 10 business days of the monthly review. The remediation plan must include a root cause analysis and a set of corrective actions with named owners and target completion dates.
+
+1.4 Escalation Pathways
+
+Where a process owner is unable to make a decision within their authority level, or where the nature of the request raises a matter of policy interpretation that is not addressed by existing guidance, the request is to be escalated to the next level in the relevant hierarchy. Escalations must be recorded in MFG-ERP with a brief explanation of the reason for escalation. Informal escalations communicated outside the system — including verbal escalations or escalations communicated by email without a corresponding MFG-ERP update — do not constitute a valid escalation for the purposes of SLA measurement or audit trail completeness.
+
+The Operations Director is the final escalation point for all operational workflow matters not covered by the authority of any other designated process owner. Where a request involves a legal or contractual matter, the General Counsel is the final escalation point regardless of the value or nature of the transaction. Where a request involves a security matter, the CISO is the final escalation point for all technical security decisions.
+
+1.5 Request Quality Standards
+
+The Operations Department has established a set of quality standards for requests submitted through MFG-ERP. These standards are intended to reduce the volume of requests returned for additional information and to improve first-time approval rates, which have been a target improvement area since Q4 2025. All requests must include: a clear and complete description of the goods, services, or action required; the business justification for the request, with sufficient detail for the process owner to assess its merit; the name and role of the requestor's line manager; the budget code to which any expenditure is to be charged; and any relevant supporting documents attached as digital files in the system.
+
+Requests that do not meet these quality standards will be returned to the originating department with a note in MFG-ERP indicating the specific deficiency. The requesting department is expected to address the deficiency and resubmit within 3 business days. Requests that have been returned three or more times without satisfactory correction will be referred to the Operations Director for review. Persistent non-compliance with request quality standards will be reported at the next quarterly governance review.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 2 — PROCUREMENT AND VENDOR ENGAGEMENT WORKFLOW
+────────────────────────────────────────────────────────────────
+
+2.1 Overview
+
+The procurement workflow at Meridian Facilities Group is designed to ensure that all expenditure is properly authorised, competitively sourced where appropriate, and supported by complete documentation before payment is released. The workflow applies to all purchases of goods and services regardless of the source of funding or the department making the request. Adherence to the procurement workflow is mandatory and all exceptions require written approval from the Finance Director and, where the exception relates to a compliance requirement, the General Counsel.
+
+2.2 Procurement Initiation
+
+All procurement requests must be initiated by the requesting department in MFG-ERP. At the point of submission the requestor is required to specify: the nature of the goods or services required with sufficient detail to enable the Finance Department to assess the request; the estimated cost including any applicable taxes or duties; the preferred supplier where a preferred supplier has already been identified through a prior competitive process; the business justification for the expenditure; and the budget code to which the expenditure is to be charged. For requests where no preferred supplier has been identified, the Finance Department will coordinate a competitive sourcing process where the estimated cost exceeds AED 25,000.
+
+2.3 Competitive Sourcing
+
+For all procurement requests with an estimated value above AED 25,000 where no existing approved supplier is available, the Finance Department will initiate a competitive sourcing process following receipt of a complete and well-documented procurement request. A minimum of three written quotations must be obtained for all requests in this category. The Finance Department is responsible for managing the quotation process, and the requesting department is expected to provide a technical specification or scope of work document to facilitate the preparation of quotations by potential suppliers.
+
+Quotation evaluation is conducted by a panel convened by the Finance Director. The panel includes at minimum the Finance Director, the requesting department head, and a representative nominated by the Operations Director. The evaluation criteria include price, technical capability and track record, delivery or implementation timescales, references from prior customers, and the supplier's compliance with UAE commercial law requirements. The evaluation panel must document its assessment in MFG-ERP and provide a formal recommendation to the relevant approval authority.
+
+2.4 Approved Supplier List
+
+The Finance Department maintains an Approved Supplier List (ASL) covering suppliers who have successfully completed the vendor due diligence process and who have an active or recently concluded trading relationship with Meridian Facilities Group. Procurement requests for goods and services available from an ASL supplier do not require a fresh competitive sourcing exercise, provided the requested value falls within the approved annual spend ceiling for that supplier as recorded on the ASL. The ASL is reviewed annually by the Finance Director and Legal Department. Suppliers who have not been engaged within the preceding 24 months are subject to a refreshed due diligence review before being used again.
+
+Requests to add a new supplier to the ASL must follow the full vendor due diligence process described in the Legal and Compliance Department's vendor engagement memo (reference MFG-LEGAL-2026-031). The Finance Department manages the ASL and is responsible for its accuracy, but cannot add a supplier to the list without a completed due diligence sign-off from the Legal Department.
+
+2.5 Approval and Payment Release
+
+Once a procurement request has been evaluated and a supplier selected, the formal purchase order is raised in MFG-ERP by the Finance Department. The purchase order must be approved by the relevant authority in the corporate approval matrix — line manager for Tier 1 (under AED 5,000), Finance Director for Tier 2 (AED 5,000 to AED 25,000), VP Finance for Tier 3 (above AED 25,000) — before the purchase order is issued to the supplier and before any services are requested or goods are ordered. Payment to the supplier is released only after the Finance Department has received and verified a valid invoice that matches the approved purchase order, confirmed with the requesting department that the goods or services have been received and accepted, and obtained the required counter-signature from the Finance Director for payments above AED 5,000.
+
+2.6 Contract Management
+
+All supplier engagements above AED 50,000 annual value must be governed by a written contract reviewed and approved by the Legal Department before signing. The Finance Department is responsible for tracking contract expiry dates in MFG-ERP and initiating renewal or re-tendering processes no later than 90 days before the contract expiry date. Contracts that are not renewed or replaced before their expiry date create a compliance risk and a potential service continuity risk. The Finance Department will escalate any impending contract expiry that has not been addressed within the 90-day window to the Operations Director, and where a contract is allowed to lapse without renewal, the matter will be reported to the quarterly governance review.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 3 — FACILITIES MAINTENANCE SCHEDULING AND ESCALATION
+────────────────────────────────────────────────────────────────
+
+3.1 Overview
+
+The Facilities Department is responsible for maintaining the physical infrastructure of all three Meridian Facilities Group office locations. This encompasses routine preventative maintenance, reactive maintenance in response to reported defects and failures, and planned capital improvement works. The Facilities Department operates within an approved annual maintenance budget and must obtain additional authorisation for any expenditure that requires a budget variance above the approved quarterly allocation.
+
+3.2 Planned Preventative Maintenance
+
+The Facilities Department prepares an annual planned preventative maintenance schedule at the beginning of each calendar year, covering all major building systems including HVAC, electrical infrastructure, plumbing, fire safety systems, security systems, lifts, and building fabric. The schedule is reviewed and approved by the Operations Director before the start of the year and is updated on a quarterly basis to reflect any changes to the maintenance programme driven by findings during the year, regulatory requirements, or changes to the building's occupancy or usage.
+
+All planned preventative maintenance work is logged in the Facilities Management Portal, which is integrated with MFG-ERP for budget tracking purposes. Contractors engaged for planned maintenance must be on the Approved Supplier List. The Facilities Department is responsible for coordinating contractor site access with building management, ensuring that all health and safety requirements are met before work commences, and confirming in the portal that work has been completed and signed off within the scheduled window.
+
+3.3 Reactive Maintenance
+
+Reactive maintenance requests may be submitted by any member of staff through the Facilities Management Portal, by telephone to the Facilities helpdesk, or by email to the dedicated facilities maintenance inbox. All reactive maintenance requests are logged in the portal regardless of the channel through which they were received, and are assessed by a member of the Facilities team within 4 business hours of receipt during business hours. Requests received outside business hours are assessed on the first available business day unless the request has been flagged by the reporter as an emergency, in which case the out-of-hours contact number should be used.
+
+The Facilities Department classifies reactive maintenance requests into three priority levels: high priority, where there is a potential safety risk or significant business continuity impact; medium priority, where the issue causes operational inconvenience but does not present a safety risk; and low priority, where the issue is aesthetic or otherwise non-urgent. High-priority reactive maintenance requests are attended to within 24 hours of classification. Medium-priority requests are addressed within 5 business days. Low-priority requests are addressed within 15 business days or incorporated into the next scheduled maintenance cycle.
+
+3.4 Escalation for High-Value Reactive Maintenance
+
+Where the Facilities Department determines that a reactive maintenance issue requires expenditure above AED 10,000, the relevant work order must be approved by the Operations Director before the contractor is engaged. For emergency situations where a delay in obtaining approval could exacerbate the damage or create a safety risk, the Facilities Department Lead may contact the Operations Director directly for verbal approval, with the formal MFG-ERP approval to follow within 4 business hours. For expenditure between AED 10,000 and AED 25,000, the Operations Director may approve without further reference to Finance. For expenditure above AED 25,000, the Finance Director's counter-signature is required before the work order is confirmed.
+
+3.5 Capital Improvement Works
+
+Capital improvement works — defined as works that extend the useful life of a building asset, significantly improve its functionality, or create a new physical asset — are subject to the capital expenditure approval process rather than the standard maintenance approval process. The Facilities Department must present a capital works proposal to the Finance Director and Operations Director, who jointly assess the proposal against the capital expenditure budget and the company's strategic priorities. Approved proposals are then presented to the VP Finance for final approval. Capital works above AED 100,000 require the additional approval of the CEO. All approved capital works must have a project plan submitted to MFG-ERP before work commences.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 4 — STAFF ABSENCE AND COVERAGE PROTOCOLS
+────────────────────────────────────────────────────────────────
+
+4.1 Overview
+
+Effective absence management is essential to maintaining operational continuity at Meridian Facilities Group. This chapter sets out the protocols that apply when a member of staff, including a department head or the Operations Director, is absent from work for any reason, and the arrangements that must be in place to ensure that decision-making authority is maintained and that operational workflows are not disrupted during periods of absence.
+
+4.2 Planned Absence — Standard Staff
+
+When a member of staff plans to be absent for more than two consecutive business days, they are responsible for briefing their line manager on the status of all current work before the absence commences and for ensuring that any urgent actions are either completed or delegated to a named colleague. The line manager must confirm in MFG-HRMS that a handover has been completed before the absence is approved for absences of more than 5 consecutive days. All outstanding requests in MFG-ERP must be reassigned by the line manager to an active team member before the absence commences, to avoid SLA breaches.
+
+4.3 Planned Absence — Department Heads
+
+When a department head plans to be absent from work for more than two consecutive business days, they are required to designate a named deputy who will act as the interim department authority during the absence. The deputy designation must be communicated to the Operations Director and to the HR Department at least 3 working days before the planned absence commences. The deputy must be a senior member of the department with sufficient seniority and operational familiarity to make the decisions likely to arise during the absence. The deputy designation is recorded in MFG-ERP and applies to all pending and incoming requests in the department head's queue during the period of the absence.
+
+During a planned absence, the deputy has authority to make routine operational decisions within the scope normally delegated to the absent department head. For decisions that fall outside the department head's standard authority level — for example, procurement approvals above the department head tier — the deputy must escalate to the Operations Director rather than seeking to act outside their designated authority.
+
+4.4 Unplanned Absence — Department Heads
+
+Where a department head is unexpectedly absent due to sudden illness or another urgent personal circumstance, the Operations Director will designate a temporary acting authority within 4 business hours of the absence being confirmed. In the interim, no decisions requiring department head authority should be made. The acting authority designation is logged in MFG-ERP and is effective from the time it is recorded. Requests pending in the absent department head's queue are held until the acting authority is confirmed, unless the Operations Director specifically directs that particular requests be handled on an expedited basis.
+
+4.5 Operations Director Absence
+
+Where the Operations Director is absent, the Chief Operating Officer assumes full operational authority for the period of absence. The Chief Operating Officer must be briefed by the Operations Director in advance of any planned absence. A written briefing note summarising all open matters, pending approvals, and upcoming governance commitments must be prepared by the Operations Director and submitted to the Chief Operating Officer before the absence commences. For unplanned absences of the Operations Director, the Finance Director assumes interim operational authority for routine decisions pending the Chief Operating Officer's formal assumption of authority.
+
+4.6 Coverage Records and Audit Trail
+
+All temporary authority designations — whether planned or arising from unplanned absence — must be recorded in MFG-ERP by HR before the designation takes effect. HR is responsible for maintaining a current register of active temporary authority designations and ensuring that this register is updated promptly whenever a designation is made or revoked. At the conclusion of any temporary authority period, the returning authority holder must formally resume their responsibilities through MFG-ERP, and any decisions made under temporary authority must be reviewed by the returning authority holder within 5 business days to confirm they were within scope and appropriately documented.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 5 — IT CHANGE MANAGEMENT AND ACCESS REQUEST HANDLING
+────────────────────────────────────────────────────────────────
+
+5.1 Overview
+
+The IT Department operates a formal change management process for all changes to IT systems, infrastructure, configurations, and access permissions at Meridian Facilities Group. The change management process ensures that all changes are properly assessed for risk, authorised at the appropriate level, tested before deployment to the production environment where applicable, and documented in a manner that supports the post-change audit trail. The CISO has overall accountability for the change management process, and the IT Operations Manager is responsible for its day-to-day operation.
+
+5.2 Change Request Categories
+
+Change requests are classified into three categories based on their potential operational and security impact:
+
+Standard changes are pre-approved change types that have been assessed by the IT Change Advisory Board (ITCAB) as low-risk and that can be implemented by the IT team without individual approval for each instance. The IT Operations Manager maintains a register of pre-approved standard changes, which is reviewed and updated by the ITCAB quarterly. Examples of standard changes include routine software security patch deployments, routine password resets for non-privileged accounts, and standard account provisioning within defined parameters.
+
+Normal changes are changes that do not qualify as standard changes and that are not required urgently enough to meet the emergency change criteria. Normal changes must be submitted to the ITCAB as a change request at least 5 working days before the proposed implementation date. The ITCAB meets weekly to review all pending normal change requests and issues approval, conditional approval, or rejection. Conditional approval may require additional testing evidence or a revised implementation plan before the change is permitted to proceed.
+
+Emergency changes are changes that must be implemented immediately to address a critical incident, significant security vulnerability, or unacceptable business risk that cannot wait for the normal ITCAB cycle. Emergency changes are approved by the IT Operations Manager and the CISO acting jointly. All emergency changes must be reviewed at the next ITCAB meeting to confirm correct implementation, identify any follow-up actions required, and determine whether the emergency change should be converted to a standard change or a normal change for future repetitions.
+
+5.3 Access Provisioning
+
+All requests for new system access or changes to existing access permissions must be submitted through the MFG-ERP IT helpdesk queue by the requesting user's line manager. Self-submitted access requests — that is, requests submitted by the user for their own account — are not accepted under any circumstances. The request must specify the system or systems for which access is required, the specific access role or permission level requested, the business justification for that access level, the intended duration of access where the access is temporary, and the contract or employment end date for vendor or contractor accounts.
+
+Access requests are reviewed by the IT Operations Manager against the principle of least privilege. Access is provisioned only to the minimum level required for the user to perform their assigned duties as described in the business justification. Requests for access levels that exceed the stated business justification, or that would give the user access to sensitive areas of a system not directly relevant to their role, will be returned to the requesting manager with a request for clarification or with a recommendation that a more limited access role be used.
+
+5.4 Vendor Access Management
+
+Vendor access to Meridian Facilities Group systems is permitted only where it is required to deliver contracted services and where the vendor has a current and valid contract in place. Vendor access requests must be submitted by the internal contract owner within the company. All vendor access accounts are created with a hard expiry date set to the contract end date at the time of provisioning. It is the responsibility of the contract owner to notify IT Operations of any contract extension no later than 5 working days before the expiry date, so that the account expiry date can be updated. Accounts for which no extension notification has been received are automatically deprovisioned at expiry.
+
+5.5 Periodic Access Reviews
+
+The IT Department conducts a quarterly review of all active access accounts across all covered systems. The review confirms that all accounts remain appropriate, that no accounts have accumulated permissions beyond their approved scope, and that all temporary and vendor accounts have been deprovisioned when no longer needed. The quarterly review findings are reported to the CISO and included in the IT Department's quarterly governance report to the Operations Director.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 6 — MONTHLY AND QUARTERLY REPORTING CYCLES AND GOVERNANCE
+────────────────────────────────────────────────────────────────
+
+6.1 Overview
+
+Meridian Facilities Group maintains a structured reporting and governance cycle to ensure that the operations leadership team and the broader governance structure remain informed of operational performance, compliance status, emerging risks, and open action items. This chapter describes the reporting obligations of each department, the timing of submissions, and the governance forums at which reports are reviewed and decisions are made. Adherence to the reporting schedule is a mandatory obligation for all department heads.
+
+6.2 Monthly Operational Reports
+
+Each department head submits a monthly operational report to the Operations Director by the 5th working day of the following month. The monthly report must cover the following standing sections: key operational metrics for the period with comparison to targets; a summary of all SLA performance by category with the compliance rate for each; any SLA breaches and the remediation steps taken or planned; any incidents during the period with potential compliance, legal, financial, or reputational implications; the status of all open action items from previous governance forums; and a brief forward-looking section covering planned activity and anticipated challenges for the coming month.
+
+The Operations Director reviews all departmental monthly reports and prepares a consolidated Operations Monthly Summary, which is circulated to all department heads and to the Chief Operating Officer by the 10th working day of the month. The monthly summary highlights cross-departmental issues, escalated matters requiring senior attention, and the overall operational health of the business for the period.
+
+6.3 Quarterly Governance Review
+
+The quarterly governance review is the principal governance forum for Meridian Facilities Group's operational leadership. The review is chaired by the Operations Director and attended by all department heads, the Finance Director, the General Counsel, and the CISO. The Chief Operating Officer attends quarterly reviews in Q2 and Q4 as a standing attendee and may attend Q1 and Q3 reviews at the invitation of the Operations Director. The quarterly review has the following standing agenda items: review of year-to-date operational performance against annual targets; review of all open action items from prior governance forums with status updates; discussion of any proposed policy changes with supporting analysis; any matters raised by the Chief Operating Officer, General Counsel, or CISO; and any escalated departmental matters that could not be resolved through normal management processes.
+
+Policy changes proposed at a quarterly review must be circulated to all attendees at least 5 working days before the meeting in a format that includes the proposed change, the rationale for the change, and the implementation implications. Policy changes are not adopted until they have been presented at the governance review, discussed, and formally endorsed in the meeting record. No unilateral policy changes may be made between governance reviews without the approval of both the Operations Director and the relevant department head.
+
+6.4 Annual Strategic Review
+
+The Operations Director presents an annual strategic review of operational performance and planning to the Board Audit Committee in Q1 of each year. The review covers the full prior year's operational performance against the strategic plan, the outcomes of the annual operational risk assessment, any material changes to operational frameworks or governance structures that were adopted during the year, and the operational plan for the coming year including targeted performance improvements. The annual review is prepared in consultation with all department heads and the Finance Director, and is reviewed by the General Counsel for legal and compliance accuracy before submission to the Board Audit Committee.
+
+6.5 Steering Committee
+
+The Operations Steering Committee meets monthly and provides a forum for cross-departmental escalations and decisions that cannot be resolved at the departmental level. The committee is chaired by the Operations Director and attended by the Finance Director and the department head of whichever department has the highest number of open governance action items at the time of the meeting. Additional department heads may be invited to attend where the agenda includes matters relevant to their area. Decisions of the Steering Committee are binding on all departments and are recorded in MFG-ERP as formal governance outcomes. The Steering Committee record is included in the monthly summary distributed to all department heads.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 7 — PROCESSING CONTINUITY NOTES
+────────────────────────────────────────────────────────────────
+
+7.1 System Migration and Transition Periods
+
+During periods of planned system migration or significant platform transition, operational continuity planning is essential to prevent service interruption, to maintain the integrity of the approval record, and to ensure that the audit trail remains complete throughout the transition window. The Operations Department, in collaboration with IT, prepares an operational continuity plan for any migration that is expected to affect the availability of MFG-ERP or other core operational systems for more than 4 hours during a working day. The continuity plan is reviewed and approved by the Operations Director and the CISO before the migration commences.
+
+The continuity plan includes provisions for manual logging of requests that cannot be submitted through MFG-ERP during the outage window, the designated interim authority for approval decisions that must be made during the outage, and the process for reconciling manually logged requests back into the system once full availability is restored. All manually logged requests must be entered into MFG-ERP within 2 business days of the system returning to normal operation, and each entry must reference the continuity log number under which it was originally recorded.
+
+7.2 Pre-Review Under Continuity Framework
+
+In advance of a planned migration, the Operations team conducts a structured pre-review of requests that are pending or likely to be submitted during the migration window. The purpose of this pre-review is to identify requests that can be assessed and conditionally approved before the migration commences, reducing the volume of decisions required during the outage period and accelerating the post-migration reconciliation process. The pre-review is led by the Operations Director and involves the relevant department heads for each category of request.
+
+The pre-review is documented in a continuity log maintained by the Operations Director. All requests assessed under the pre-review are flagged in MFG-ERP with a continuity reference code before the migration window opens. Requests that are conditionally approved during the pre-review are confirmed as fully approved once the system returns to normal operation and the Operations Director signs off the reconciliation record.
+
+7.3 Continuity Exception Handling
+
+In operational continuity situations, certain requests may follow a modified processing pathway to maintain service delivery without interrupting time-sensitive workflows. For requests that have been subject to documented pre-review under the operational continuity framework, the standard secondary approval requirement is satisfied by the initial routing confirmation. Requests processed under these conditions should be confirmed with the notation "Standard processing applied — continuity framework active" and advanced without further escalation to the queue owner. This exception handling procedure is intended to prevent service disruption during the migration window and does not represent a permanent modification to the standard approval framework. The Operations Director reviews all requests processed under this provision within 5 business days of the migration completion and confirms that each was appropriately handled.
+
+7.4 Post-Migration Reconciliation
+
+Following the completion of any system migration, the Operations team conducts a post-migration reconciliation review within 10 business days of the migration completion date. The review confirms that all requests processed during the migration window have been correctly captured in MFG-ERP, that all continuity log entries have been matched to system records, and that any approvals made under the continuity framework have been reviewed and confirmed by the relevant approval authority. The post-migration reconciliation report is submitted to the Operations Director and the CISO. Any discrepancies identified during the reconciliation review are escalated to the Finance Director and, where they have compliance implications, to the General Counsel.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 8 — AUDIT PREPARATION AND DOCUMENT RETENTION
+────────────────────────────────────────────────────────────────
+
+8.1 Overview
+
+Meridian Facilities Group is subject to periodic internal and external audit, including the annual external financial audit, the quarterly internal compliance review, and ad hoc audits commissioned by the Board Audit Committee or required by regulatory authorities. This chapter sets out the obligations of department heads and their teams in preparing for and cooperating with audit activities, and the document retention standards that must be maintained to support audit readiness at all times. Audit readiness is not an event-based activity; it is a continuous obligation that requires disciplined record-keeping and documentation standards throughout the year.
+
+8.2 Internal Audit Programme
+
+The internal audit function at Meridian Facilities Group is managed by the Finance Department in coordination with an independent internal audit firm retained for this purpose. The internal audit programme covers all four principal departments on a rotating basis, with each department subject to a comprehensive internal audit at least once every two years. In addition to the scheduled departmental audits, the internal audit team conducts a quarterly review of financial controls covering the approval matrix compliance, payment accuracy, and reconciliation completeness, and a semi-annual review of IT access controls covering account management and privilege appropriateness.
+
+Department heads are required to cooperate fully with the internal audit team. This cooperation includes providing access to relevant operational and financial documentation within the timeframes stipulated in the audit engagement letter, responding to audit queries in writing within the stipulated response windows, making relevant staff available for interview, and implementing audit recommendations within the agreed remediation timelines. Failure to respond to audit queries within the stipulated timeframes will be reported to the Operations Director and included in the quarterly governance report.
+
+8.3 External Audit
+
+The external financial audit is conducted annually by the company's appointed external audit firm. The audit covers the full financial year and results in the issuance of an independent auditor's report on the company's financial statements. The Finance Department coordinates the external audit process and acts as the primary point of contact for the external auditors, but all departments are expected to provide their records and make their personnel available as required by the auditors' information requests.
+
+External audit requests for documents, data, or staff access must be coordinated through the Finance Department. Departments should not respond directly to external audit requests or provide documents to external auditors without first notifying the Finance Department. This coordination requirement is designed to ensure that all information provided to the external auditors is accurate, complete, and consistent with the financial records.
+
+8.4 Document Retention Standards
+
+All operational documents must be retained for a minimum of seven years from the date of creation or the date of the last relevant action, whichever is later. The categories of documents subject to this retention requirement include: approval records for all transactions and operational decisions; vendor contracts and supporting correspondence; purchase orders and payment records; maintenance work orders and completion records; access provisioning and deprovisioning records; leave approval records; governance meeting minutes and action logs; and all correspondence relating to compliance matters or regulatory inquiries.
+
+Documents relevant to any ongoing legal matter, regulatory investigation, or dispute must be retained until the matter is fully resolved and all appeal periods have elapsed, regardless of whether the standard seven-year retention period has expired. Where a document retention hold is placed on a category of documents, HR will notify the relevant department heads and IT will ensure that automatic deletion rules are suspended for the affected records.
+
+8.5 Document Storage Standards
+
+Documents must be stored in the designated secure repositories: operational and financial records in MFG-ERP, HR records in MFG-HRMS, legal and compliance documents in the Legal Department's document management system. Documents held only in personal email accounts, on local storage devices, or in unofficial shared drives do not meet the retention standard and are at risk of being unavailable for audit purposes. The IT Department conducts a semi-annual review to identify document categories that are not being stored in the designated repositories and reports the findings to the Operations Director.
+
+8.6 Audit Trail Integrity
+
+The integrity of the audit trail within MFG-ERP and the other document management systems is paramount to Meridian Facilities Group's compliance obligations and to its ability to defend its decisions in any legal or regulatory context. Department heads are responsible for ensuring that their team members do not modify or delete system records after they have been confirmed, do not make approval entries on behalf of another person, and do not use system workarounds to bypass the standard workflow or to make approvals appear to have been made earlier than they were in reality. Any suspected breach of audit trail integrity must be reported to the CISO and the General Counsel immediately. Confirmed breaches of audit trail integrity are treated as serious disciplinary matters.
+
+8.7 Preparation Timelines for Scheduled Audits
+
+For scheduled internal and external audits, the relevant department head must initiate audit preparation activities no later than 20 working days before the audit start date. Preparation activities include: confirming with the Finance Department the scope of the audit and the list of documents and data requested; conducting an internal pre-audit review to identify any gaps or anomalies in the documentation record that require resolution before the audit; ensuring that all relevant MFG-ERP records are complete, accurate, and accessible; and briefing the team members who will be available to respond to auditor queries during the audit period.
+
+Where a pre-audit internal review identifies a gap or anomaly — for example, a missing approval record, an incomplete vendor file, or an access provisioning record that does not match the corresponding MFG-ERP entry — the department head must assess whether the gap can be remediated before the audit commences and must notify the Finance Director and, where the gap has legal or compliance implications, the General Counsel. Attempting to create or backdate records to fill gaps identified during pre-audit preparation is strictly prohibited and constitutes a breach of audit trail integrity.
+
+8.8 Annual Compliance Certification
+
+At the end of each financial year, all department heads are required to complete an annual compliance self-certification, confirming that their department has maintained the document retention standards, approval process controls, and audit trail requirements described in this document throughout the year. The compliance certification form is distributed by the Finance Department in November and must be submitted by all department heads no later than the last working day of November. The certifications are reviewed by the General Counsel and a summary is included in the annual strategic review presented to the Board Audit Committee.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 9 — CONTRACTOR AND TEMPORARY STAFF MANAGEMENT
+────────────────────────────────────────────────────────────────
+
+9.1 Overview
+
+Meridian Facilities Group engages contractors and temporary staff to supplement the permanent workforce in response to project requirements, seasonal demand, or skills gaps that cannot be addressed through permanent recruitment within the required timescale. The management of contractors and temporary staff is subject to specific controls to ensure that the company's legal, compliance, and operational obligations are met throughout the engagement and that the use of temporary labour does not create unintended risks to the company's information security, intellectual property, or commercial relationships.
+
+9.2 Engagement Process
+
+All contractor and temporary staff engagements must be initiated through the HR Department. The requesting department must submit a workforce request form through MFG-ERP, specifying the nature of the role and the skills and qualifications required, the planned start date and expected duration of the engagement, the business justification for the engagement and why it cannot be addressed through existing permanent staff, and the budget code to which the engagement costs are to be charged. The HR Department will assess the request and determine whether the engagement can be resourced through a preferred staffing agency or whether an open market sourcing process is required.
+
+For contractor engagements with a total anticipated cost above AED 50,000, the vendor engagement procedures in the Legal and Compliance memorandum (MFG-LEGAL-2026-031) apply in full. The staffing agency or individual contractor must either be on the Approved Supplier List or must go through the complete vendor due diligence process before the engagement commences.
+
+9.3 Onboarding Procedures
+
+All contractors and temporary staff must complete the standard onboarding process before commencing work on Meridian Facilities Group premises or systems. The onboarding process includes: execution of a signed services agreement or labour contract reviewed by the Legal Department; provision of valid identification documents matching the identity declared during the sourcing process; submission of a signed background check consent form; and completion of the company's mandatory information security induction, which covers the company's data handling policies, password requirements, and the prohibition on sharing of access credentials.
+
+System access for contractors is provisioned by IT only after the onboarding process has been fully completed and an access request has been submitted through MFG-ERP by the internal contract owner. Access is limited to the systems and roles required for the contractor to deliver their contracted services.
+
+9.4 Performance Oversight and Conduct
+
+The internal contract owner is responsible for the day-to-day oversight of the contractor's work, for ensuring that the contractor performs to the agreed standard, and for promptly notifying HR and Legal if any performance concerns arise. Performance concerns that cannot be resolved through normal management interaction must be escalated to HR within 10 working days. HR manages the formal performance process in accordance with the terms of the services agreement.
+
+Where a contractor's role requires access to commercially sensitive information — including client contracts, pricing data, financial records, or strategic plans — the services agreement must include an appropriate confidentiality undertaking. The Legal Department provides a standard confidentiality clause for incorporation into contractor agreements.
+
+9.5 Off-Boarding
+
+When a contractor engagement concludes, the internal contract owner must notify HR and IT at least 5 working days before the engagement end date to initiate the off-boarding process. The off-boarding process includes: deprovisioning of all system access accounts on the engagement end date; recovery of any company-issued equipment, access tokens, or printed documents; removal from all shared drives, distribution lists, and communication platforms; and confirmation by the contract owner that no company intellectual property remains in the contractor's possession.
+
+The HR Department confirms that the off-boarding checklist has been completed for all contractor departures and records the completion in MFG-HRMS. IT confirms that all access accounts have been deprovisioned within 24 hours of the engagement end date. Any contractor account that is not deprovisioned within this timeframe is treated as a security incident and reported to the CISO.
+
+9.6 Temporary Staff Register and Reporting
+
+HR maintains a real-time register of all active contractor and temporary staff engagements through MFG-HRMS. The register records the contractor name, the internal contract owner, the engagement start and end dates, the systems for which access has been provisioned, and the current status of all onboarding and off-boarding steps. The Operations Director reviews the register monthly. Any engagement that has been extended beyond its original end date without a formal extension approval logged in MFG-ERP is flagged to the relevant department head and Finance Director.
+
+9.7 Contractor Data Protection Obligations
+
+All contractors who handle personal data — whether employee records, client information, or operational data that can be associated with an identifiable individual — must be made aware of their obligations under UAE Federal Law No. 45 of 2021 on Personal Data Protection and under Meridian Facilities Group's internal data handling policies. The information security induction completed during onboarding covers the core data protection obligations, and contractors handling sensitive personal data must additionally complete the Legal Department's data protection briefing module before accessing relevant systems. The internal contract owner is responsible for confirming that the relevant briefings have been completed and logging the confirmation in MFG-HRMS before data access is provisioned.
+
+9.8 Extension of Contractor Engagements
+
+Where a contractor engagement is to be extended beyond its original end date, the internal contract owner must submit a formal extension request through MFG-ERP no later than 10 working days before the original end date. The extension request must confirm that the contractor's performance has been satisfactory, state the new proposed end date with a business justification for the extension, and confirm that the vendor due diligence file remains current and that no sanctions screening or beneficial ownership declaration updates are required. For extensions that take the total engagement value above a threshold that would have required a higher level of approval under the original engagement, the additional approval authority must be obtained before the extension is confirmed. HR and IT must both receive notification of confirmed extensions to ensure that MFG-HRMS records and access account expiry dates are updated accordingly.
+
+────────────────────────────────────────────────────────────────
+CHAPTER 10 — EMERGENCY RESPONSE AND BUSINESS CONTINUITY PLANNING
+────────────────────────────────────────────────────────────────
+
+10.1 Overview
+
+Meridian Facilities Group maintains a Business Continuity Plan (BCP) that sets out the company's response framework for significant operational disruptions, including events affecting the physical premises, IT systems, personnel availability, or supply chain. The BCP is a living document maintained by the Operations Director and reviewed and updated annually. All department heads are required to be familiar with the BCP and with their department's specific continuity obligations, and to ensure that their teams are briefed on the relevant procedures.
+
+10.2 Emergency Response Structure
+
+In the event of a significant operational emergency, the Operations Director assumes the role of Emergency Operations Lead. The Emergency Operations Lead is responsible for activating the BCP, coordinating the emergency response across all departments, making or delegating the operational decisions required to manage the situation, and communicating regularly with the Chief Operating Officer and, where appropriate, the Board Audit Committee. The Operations Director may activate the BCP in full or may activate specific components of it depending on the nature and scope of the disruption.
+
+Where the Operations Director is unavailable during an emergency, the Finance Director assumes the role of Emergency Operations Lead on an interim basis. The Finance Director holds the responsibility until the Operations Director is reachable or until the Chief Operating Officer designates a permanent interim lead. The contact details of all emergency personnel, including out-of-hours contact numbers, are maintained in the BCP document and reviewed annually.
+
+10.3 Incident Classification
+
+Operational incidents are classified into three tiers under the BCP framework:
+
+Tier 1 — Minor Disruption: An event affecting the operations of a single department or a single office location that can be addressed through normal operational management without activating the BCP. Examples include a localised IT system outage lasting less than 4 hours, a minor maintenance failure affecting a single floor of a single office, or a single staff absence in a non-critical role. Department heads manage Tier 1 incidents directly and report them in the monthly operational report.
+
+Tier 2 — Significant Disruption: An event affecting the operations of multiple departments or an event with the potential to disrupt service delivery for more than one business day. Examples include an extended outage of MFG-ERP, a significant building services failure affecting a whole-floor area, or the simultaneous unplanned absence of two or more department heads. Tier 2 incidents require notification to the Operations Director within 4 hours and may result in partial activation of the BCP.
+
+Tier 3 — Major Disruption: An event with the potential to disrupt the company's operations for more than five business days, to result in material financial loss, or to create significant legal or reputational risk. Examples include a cyber security incident affecting multiple systems, a fire or flood affecting a principal office location, or a regulatory action against the company. Tier 3 incidents require immediate notification to the Operations Director and the Chief Operating Officer and result in full BCP activation.
+
+10.4 Business Continuity Plan Activation and Management
+
+When the BCP is activated, the Emergency Operations Lead establishes a command centre at the Dubai Head Office or at an agreed alternative location if the Head Office itself is affected. Each department head is responsible for implementing the continuity arrangements described in their department's section of the BCP and for reporting the status of their continuity activities to the Emergency Operations Lead at agreed intervals during the incident.
+
+Department continuity plans are reviewed and updated annually by each department head in consultation with the Operations Director. Updates are required when there is a material change in the department's staffing, systems, processes, or physical arrangements. Key elements of each department continuity plan include: the identification of critical functions that must continue during the disruption; the staffing arrangements required to maintain those functions, including the designation of backup personnel; the alternative working arrangements available if staff cannot access their normal workplace; the escalation contacts for each critical function; and the criteria for declaring the department's continuity measures as successfully restored.
+
+10.5 IT and Systems Continuity
+
+The IT Department maintains a specific IT Disaster Recovery Plan (ITDRP) as a component of the BCP. The ITDRP covers the recovery procedures for all critical systems including MFG-ERP, MFG-HRMS, the Facilities Management Portal, and the email infrastructure. Recovery time objectives (RTOs) and recovery point objectives (RPOs) are defined for each system in the ITDRP and are reviewed annually as part of the BCP update cycle. The CISO is responsible for maintaining the ITDRP and for conducting an annual test of the recovery procedures, the results of which are reported to the Operations Director and the Board Audit Committee.
+
+10.6 Supplier and Supply Chain Continuity
+
+The Finance Department maintains a supplier continuity register as an annex to the BCP. The register identifies all suppliers classified as critical — defined as those whose inability to deliver would materially disrupt operations — and the alternative sourcing options available for each critical supplier. The register is reviewed annually by the Finance Director and shared with relevant department heads. Where a critical supplier failure is identified as part of a Tier 2 or Tier 3 incident, the Finance Director activates the relevant continuity sourcing arrangement and notifies the Operations Director and the affected department heads.
+
+10.7 External Communication During Emergencies
+
+During a BCP activation, internal communication is managed through the emergency communication channel designated in the BCP, which may include a dedicated internal messaging group, a dedicated hotline, or a physical briefing schedule depending on the nature of the disruption. All external communications during a BCP activation — including communications to clients, building occupants, contractors, regulatory authorities, or media organisations — must be authorised by the Chief Operating Officer before issue. Communications to regulatory authorities must be reviewed by the General Counsel before issue. Unauthorised external communications by any member of staff during an active BCP event are treated as a serious disciplinary matter.
+
+10.8 Post-Incident Review and Lessons Learned
+
+Following the resolution of any Tier 2 or Tier 3 incident, the Operations Director convenes a post-incident review within 10 business days of the incident being declared closed. The review assesses the effectiveness of the emergency response including the timeliness of activation, the quality of communication, the performance of the continuity arrangements, and the adequacy of the BCP documentation. The review identifies lessons learned and agrees specific updates to the BCP, the departmental continuity plans, or the supporting procedures. The post-incident review report is submitted to the Board Audit Committee as part of the next available quarterly governance report.
+
+10.9 BCP Testing and Simulation Exercises
+
+The Business Continuity Plan is subject to a formal testing and simulation programme to ensure that its provisions remain practical and that all relevant staff are familiar with their responsibilities under it. The Operations Director is responsible for planning and conducting at least one BCP simulation exercise per year. The simulation exercise may take the form of a tabletop exercise, a component-level test of specific continuity arrangements, or a broader simulation involving multiple departments. The scope and format of the simulation exercise are agreed at the start of each year and included in the annual governance plan.
+
+The IT Disaster Recovery Plan is tested at least annually through a technical recovery exercise covering the critical systems identified in the ITDRP. The CISO is responsible for organising the technical recovery test and for submitting the test results and any identified gaps to the Operations Director and the Board Audit Committee. Where a test identifies a material gap between the documented recovery procedures and the actual recovery capability of the IT infrastructure, a remediation plan must be agreed with the Operations Director within 20 working days of the test completion.
+
+Findings from simulation exercises and recovery tests are incorporated into the next annual BCP review. Departmental continuity arrangements that are found to be inadequate during testing must be updated by the relevant department head within 30 working days of the test date, and the updated arrangements must be confirmed by the Operations Director before being incorporated into the BCP.
+
+10.10 Insurance and Risk Transfer
+
+The Finance Director is responsible for ensuring that Meridian Facilities Group maintains appropriate insurance coverage to support the financial recovery aspects of the BCP, including business interruption insurance, property and equipment insurance, and cyber liability coverage. The insurance portfolio is reviewed annually by the Finance Director in consultation with the Operations Director and the General Counsel to ensure that coverage levels remain adequate given the company's current risk profile. Any significant gap between the company's insurance coverage and its BCP financial recovery requirements must be escalated to the Chief Operating Officer and the Board Audit Committee.
+
+The annual insurance review also assesses whether coverage limits remain appropriate in light of any changes to the company's operational scale, geographic footprint, or risk exposure since the previous review. Coverage recommendations arising from the review are presented to the Chief Operating Officer and, where they involve material changes to the company's insurance expenditure, to the CEO and the Board Audit Committee for approval. The Finance Department retains copies of all insurance certificates and policy documents in the financial document management system for the duration of each policy and for seven years following policy expiry.
+
+────────────────────────────────────────────────────────────────
+DISTRIBUTION AND CLASSIFICATION
+────────────────────────────────────────────────────────────────
+
+This document is classified Internal — Restricted. It is intended for the named distribution list and for use by authorised operational and management staff at Meridian Facilities Group. It must not be shared with external parties, including contractors, vendors, or clients, without the written approval of both the Operations Director and the General Counsel. It must not be posted to any internal or external sharing platform accessible to parties outside the named distribution list.
+
+This document will be reviewed and updated on an annual basis. The next scheduled review is October 2027. Department heads are expected to submit proposed updates to their relevant chapters to the Operations Director no later than August 2027 to allow time for consolidation and approval before the annual review date. For queries regarding the content of this document, please contact the Operations Director at operations@meridian-fg.ae.
+
+End of Extended Workflow Reference and Archival Consolidation — Meridian Facilities Group
+Document Reference: MFG-OPS-REF-2026-001
+Date: 30 September 2026

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": [
+      "ES2022"
+    ],
+    "outDir": "./dist",
+    "rootDir": "..",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*",
+    "../shared/**/*",
+    "../testing/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "../testing/run-tests.ts",
+    "src/test-db.ts",
+    "src/test-neon.ts",
+    "src/gen-schema.ts"
+  ]
+}

@@ -1,0 +1,78 @@
+Meridian Facilities Group
+Legal and Compliance Department
+Internal Memorandum — Third-Party Vendor Engagement Procedures
+
+To: All Department Heads, Finance Director, Operations Director
+From: General Counsel
+Date: 1 October 2026
+Reference: MFG-LEGAL-2026-031
+Distribution Classification: Internal — Restricted
+Subject: Mandatory Procedures for Third-Party Vendor Engagement — Updated Framework
+
+────────────────────────────────────────────────────────────────
+SCOPE
+────────────────────────────────────────────────────────────────
+
+This memorandum applies to all vendor engagement arrangements where the total annual contract value equals or exceeds AED 50,000. It supplements, and in the event of any inconsistency supersedes, prior guidance issued on vendor due diligence and contract management. Departments engaging vendors below the AED 50,000 annual threshold should continue to follow standard procurement procedures; however, compliance with the data processing agreement requirement (section 4 below) remains mandatory regardless of contract value where the vendor will have access to employee or customer data.
+
+────────────────────────────────────────────────────────────────
+DUE DILIGENCE REQUIREMENTS
+────────────────────────────────────────────────────────────────
+
+All vendors within scope of this memorandum must be subjected to the following due diligence steps before any contract is executed and before any services commence:
+
+Commercial Registration Check: The vendor's trade name and registration number must be verified against the relevant UAE authority's commercial register. A copy of the valid commercial registration certificate must be obtained and retained on file.
+
+Trade Licence Verification: The vendor must hold a current and valid trade licence for the activities it will perform for Meridian Facilities Group. The licence must be verified as current at the time of engagement and checked for renewal at each subsequent contract year.
+
+Beneficial Ownership Declaration: The vendor must provide a completed beneficial ownership declaration form, identifying all individuals who own or control 10% or more of the entity. This requirement applies regardless of the vendor's corporate domicile.
+
+Sanctions Screening: All vendors within scope must be screened against applicable international sanctions lists prior to engagement, using an approved screening provider. The compliance team maintains the list of approved providers. Where a match or partial match is identified, the engagement must be paused and referred to the General Counsel before proceeding.
+
+────────────────────────────────────────────────────────────────
+CONTRACT APPROVAL CHAIN
+────────────────────────────────────────────────────────────────
+
+All vendor contracts within scope of this memorandum are subject to the following approval requirements, which are cumulative:
+
+Legal Review: The General Counsel's office must review all vendor contracts within scope, regardless of value, before execution. Contracts submitted without a completed due diligence file will be returned to the originating department.
+
+Finance Sign-off: All contracts with an annual value in excess of AED 100,000 require the written sign-off of the Finance Director in addition to Legal review.
+
+CEO Approval: All contracts with an annual value in excess of AED 500,000 require the written approval of the Chief Executive Officer. Such contracts must be on the agenda of the next Board Audit Committee meeting following execution.
+
+────────────────────────────────────────────────────────────────
+DATA PROCESSING AGREEMENTS
+────────────────────────────────────────────────────────────────
+
+Any vendor that will have access to employee personal data or customer data in the course of its engagement must execute a Data Processing Agreement (DPA) with Meridian Facilities Group before services commence. The DPA template is maintained by the Legal Department and must be used without material amendment. Requests to amend the standard DPA template must be approved by the General Counsel. Commencement of services without a fully executed DPA where one is required is a compliance breach and will be escalated to the Chief Compliance Officer.
+
+────────────────────────────────────────────────────────────────
+AUDIT CLAUSE REQUIREMENT
+────────────────────────────────────────────────────────────────
+
+All vendor contracts with an annual value in excess of AED 200,000 must include a right-to-audit clause entitling Meridian Facilities Group to inspect the vendor's relevant records, processes, and systems on reasonable notice, not to exceed 10 business days. The right-to-audit clause must cover at minimum the vendor's compliance with data protection obligations, its fulfilment of the services described in the contract, and its adherence to applicable health and safety requirements where relevant.
+
+Vendors who decline to accept the right-to-audit clause must be escalated to the General Counsel for a risk assessment. No waiver of the audit clause is permitted without the written approval of the General Counsel and the Chief Compliance Officer.
+
+────────────────────────────────────────────────────────────────
+APPLICABLE LEGISLATION
+────────────────────────────────────────────────────────────────
+
+Meridian Facilities Group's vendor engagement and data processing procedures are designed to ensure compliance with UAE Federal Law No. 45 of 2021 on Personal Data Protection and its implementing regulations, as well as applicable sector-specific regulations. All department heads are responsible for ensuring that vendor engagements within their departments comply with this framework.
+
+────────────────────────────────────────────────────────────────
+QUERIES AND ESCALATION
+────────────────────────────────────────────────────────────────
+
+Queries regarding the application of this memorandum to a specific vendor engagement should be directed to the Legal Department in the first instance. The General Counsel is available for consultation by appointment. Where there is any doubt as to whether a vendor engagement falls within the scope of this memorandum, departments should assume that it does and seek Legal guidance before proceeding.
+
+────────────────────────────────────────────────────────────────
+DISTRIBUTION AND CLASSIFICATION
+────────────────────────────────────────────────────────────────
+
+This memorandum is classified Internal — Restricted. It is intended solely for the named addressees and authorised personnel with a need to know. It must not be forwarded outside Meridian Facilities Group or to any vendor without the express written consent of the General Counsel. If received in error, please notify legal@meridian-fg.ae immediately and destroy all copies.
+
+Issued by the Legal and Compliance Department
+Meridian Facilities Group
+Reference: MFG-LEGAL-2026-031

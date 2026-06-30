@@ -1,0 +1,91 @@
+Meridian Facilities Group
+Operations Department — Monthly Workflow Review
+Meeting Minutes
+Date: 24 September 2026 (Wednesday)
+Time: 10:00 – 11:45 AM
+Location: Dubai Head Office, Conference Room B2
+Prepared by: Operations Administrator
+Approved by: Operations Director
+Distribution: All Attendees, Department Files
+Classification: Internal — Confidential
+
+────────────────────────────────────────────────────────────────
+ATTENDEES
+────────────────────────────────────────────────────────────────
+
+Operations Director — Chair
+Finance Department Lead
+HR Department Lead
+IT Department Lead
+Facilities Department Lead
+
+Apologies: None recorded.
+
+────────────────────────────────────────────────────────────────
+AGENDA
+────────────────────────────────────────────────────────────────
+
+1. Cross-department request routing — review of current procedures and identified gaps
+2. Approval bottlenecks in the procurement cycle — status and proposed remediation
+3. Handover procedures for staff absence — alignment on interim authority arrangements
+
+────────────────────────────────────────────────────────────────
+AGENDA ITEM 1 — CROSS-DEPARTMENT REQUEST ROUTING
+────────────────────────────────────────────────────────────────
+
+The Operations Director opened the discussion by noting that the quarterly routing review had identified a recurring pattern of requests being submitted directly to senior approvers without first completing the standard routing steps. This created unnecessary workload at the Finance Director level and introduced risk of requests bypassing the documentation checks that occur earlier in the process.
+
+The Finance Department Lead reported that of the 847 transactions processed in Q3, 14 requests had been escalated unnecessarily to the Finance Director tier when they met the criteria for Tier 1 approval at line-manager level. In several cases, the requesting employees were unaware that the Tier 1 threshold had been raised to AED 5,000 following the Q1 policy update. Finance confirmed that all department heads had been briefed on the updated thresholds and requested that IT update the MFG-ERP guidance notes to reflect the current matrix.
+
+The IT Department Lead confirmed that the MFG-ERP request form would be updated by end of October to display the current approval thresholds at the point of submission. The HR Department Lead noted that a reminder on the updated approval matrix would be included in the Q4 all-staff communication.
+
+Action: IT to update MFG-ERP request submission guidance — Owner: IT Department Lead — Due: 31 October 2026
+
+Action: HR to include approval matrix reminder in Q4 all-staff communication — Owner: HR Department Lead — Due: 15 November 2026
+
+────────────────────────────────────────────────────────────────
+AGENDA ITEM 2 — APPROVAL BOTTLENECKS IN THE PROCUREMENT CYCLE
+────────────────────────────────────────────────────────────────
+
+The Finance Department Lead presented data showing that Tier 3 procurement requests (above AED 25,000) were meeting the two-day VP Finance review SLA in 96% of cases, a marked improvement from the 87% compliance rate recorded in Q2. The four exceptions in Q3 were attributable to incomplete requisition forms submitted by the Facilities department.
+
+The Facilities Department Lead acknowledged the Q3 exceptions and confirmed that the relevant staff had been retrained on the requisition process. Facilities also noted a gap in the approval chain for emergency maintenance situations: when the Operations Director is unavailable (for example, during annual leave), there is currently no documented interim approver for emergency maintenance expenditure above AED 10,000. This had not caused a material issue in Q3 but was identified as a latent risk.
+
+The Operations Director agreed that an interim authority arrangement for emergency maintenance approvals should be formalised. It was proposed that the Finance Director be designated as the interim approver for emergency maintenance expenditure up to AED 25,000 when the Operations Director is unavailable, with the standing caveat that the Operations Director is to be notified within 24 hours of any such approval.
+
+Action: Operations to draft interim authority clause for emergency maintenance approvals — Owner: Operations Director — Due: 14 October 2026
+
+Action: Legal to review interim authority clause before adoption — Owner: Finance Department Lead (to coordinate with Legal) — Due: 31 October 2026
+
+────────────────────────────────────────────────────────────────
+AGENDA ITEM 3 — HANDOVER PROCEDURES FOR STAFF ABSENCE
+────────────────────────────────────────────────────────────────
+
+The IT Department Lead raised the issue of vendor account cleanup delays that had been identified in the Q3 IT access review. In two cases, delays in IT receiving off-boarding notifications had resulted in vendor accounts remaining active beyond contract end dates. IT confirmed that the automated alert system now in place should prevent recurrence, but noted that a clear escalation procedure was needed if the automated alert fails.
+
+The HR Department Lead confirmed that the off-boarding checklist in MFG-HRMS had been updated to include a mandatory step requiring the line manager to confirm that the IT helpdesk has been notified of any contractor account deprovisioning requirement. This step will be flagged to the line manager at the point of marking a staff record as inactive.
+
+The Operations Director reminded attendees that no policy changes arising from the meeting's discussions are to be implemented unilaterally. All procedural changes must be reviewed by the Operations team and, where they affect governance or approval authority, must be presented to the next steering committee meeting for sign-off before taking effect.
+
+Action: HR to confirm MFG-HRMS checklist update is live — Owner: HR Department Lead — Due: 30 September 2026
+
+────────────────────────────────────────────────────────────────
+GENERAL NOTES
+────────────────────────────────────────────────────────────────
+
+The Operations Director emphasised the importance of all departments maintaining a clear separation between operational decisions made within existing policy and decisions that require formal policy amendment. Where a department lead is uncertain whether a proposed change requires steering committee approval, they should consult with the Operations Director or Legal before proceeding.
+
+────────────────────────────────────────────────────────────────
+NEXT MEETING
+────────────────────────────────────────────────────────────────
+
+The next monthly workflow review is scheduled for Wednesday, 22 October 2026, at 10:00 AM, Dubai Head Office, Conference Room B2.
+
+────────────────────────────────────────────────────────────────
+CONFIDENTIALITY NOTICE
+────────────────────────────────────────────────────────────────
+
+These minutes are classified Internal — Confidential. They are intended solely for the named distribution list. Matters discussed in these minutes that have not yet been communicated as formal policy should not be acted upon until the relevant action items have been closed and, where required, steering committee approval has been obtained.
+
+End of Monthly Workflow Review Minutes — Meridian Facilities Group
+Meeting Date: 24 September 2026

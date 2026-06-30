@@ -1,0 +1,5 @@
+{
+  "name": "prompt-injection-defense-lab",
+  "private": true,
+  "description": "Monorepo shell — install and run from backend/ and frontend/ (see README.md)."
+}
